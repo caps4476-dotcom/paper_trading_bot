@@ -3,7 +3,7 @@
   "start_balance": 10000.0,
   "risk_percent": 1.0,
   "paused": false,
-  "telegram_offset": 644349064,
+  "telegram_offset": 644349065,
   "seen_channels": [
     "-1003990770236"
   ],
@@ -931,7 +931,7 @@
       "fee_open": 11.345273114520841,
       "opened_at": "2026-10-23T15:04:59Z",
       "opened_ms": 1792767899999,
-      "checked_until_ms": 1792793100000,
+      "checked_until_ms": 1792793400000,
       "source": "Signal-Bot",
       "capped": false
     },
@@ -951,7 +951,7 @@
       "fee_open": 8.754985441307408,
       "opened_at": "2026-10-23T15:14:59Z",
       "opened_ms": 1792768499999,
-      "checked_until_ms": 1792793100000,
+      "checked_until_ms": 1792793400000,
       "source": "Signal-Bot",
       "capped": false
     }
