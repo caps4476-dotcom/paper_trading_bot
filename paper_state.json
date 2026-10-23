@@ -1,9 +1,9 @@
 {
-  "balance": 9831.13746166244,
+  "balance": 9707.50366081825,
   "start_balance": 10000.0,
   "risk_percent": 1.0,
   "paused": false,
-  "telegram_offset": 644349052,
+  "telegram_offset": 644349053,
   "seen_channels": [
     "-1003990770236"
   ],
@@ -908,28 +908,7 @@
     "BTCUSDT_5m_MOMENTUM_2026-10-23 08:34:59.999000+00:00",
     "BTCUSDT_5m_MOMENTUM_2026-10-23 12:39:59.999000+00:00"
   ],
-  "open": [
-    {
-      "id": "edb356",
-      "symbol": "BTCUSDT",
-      "timeframe": "5m",
-      "category": "Momentum",
-      "side": "BUY",
-      "signal_entry": 81892.11,
-      "entry": 81892.11,
-      "sl": 81721.23535714285,
-      "tp": 82148.42196428572,
-      "qty": 0.5839074726211402,
-      "notional": 47817.4149777124,
-      "risk": 99.77498084575649,
-      "fee_open": 23.908707488856198,
-      "opened_at": "2026-10-23T13:24:59Z",
-      "opened_ms": 1792761899999,
-      "checked_until_ms": 1792762140000,
-      "source": "Signal-Bot",
-      "capped": false
-    }
-  ],
+  "open": [],
   "closed": [
     {
       "id": "856cce",
@@ -955,6 +934,31 @@
       "r_multiple": -1.4495383084870432,
       "closed_at": "2026-10-23T13:29:48Z",
       "balance_after": 9831.13746166244
+    },
+    {
+      "id": "edb356",
+      "symbol": "BTCUSDT",
+      "timeframe": "5m",
+      "category": "Momentum",
+      "side": "BUY",
+      "signal_entry": 81892.11,
+      "entry": 81892.11,
+      "sl": 81721.23535714285,
+      "tp": 82148.42196428572,
+      "qty": 0.5839074726211402,
+      "notional": 47817.4149777124,
+      "risk": 99.77498084575649,
+      "fee_open": 23.908707488856198,
+      "opened_at": "2026-10-23T13:24:59Z",
+      "opened_ms": 1792761899999,
+      "source": "Signal-Bot",
+      "capped": false,
+      "exit": 81721.23535714285,
+      "reason": "SL",
+      "pnl": -147.54250833304602,
+      "r_multiple": -1.4787525598339528,
+      "closed_at": "2026-10-23T13:48:35Z",
+      "balance_after": 9707.50366081825
     }
   ],
   "created": "2026-10-23T08:40:40Z"
