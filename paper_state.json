@@ -3,7 +3,7 @@
   "start_balance": 10000.0,
   "risk_percent": 1.0,
   "paused": false,
-  "telegram_offset": 0,
+  "telegram_offset": 644349048,
   "seen_channels": [],
   "open": [],
   "closed": [],
