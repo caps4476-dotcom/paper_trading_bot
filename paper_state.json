@@ -1,9 +1,9 @@
 {
-  "balance": 9446.714264792752,
+  "balance": 9418.206505403637,
   "start_balance": 10000.0,
   "risk_percent": 1.0,
   "paused": false,
-  "telegram_offset": 644349061,
+  "telegram_offset": 644349062,
   "seen_channels": [
     "-1003990770236"
   ],
@@ -910,7 +910,8 @@
     "BTCUSDT_5m_MOMENTUM_2026-10-23 15:04:59.999000+00:00",
     "BTCUSDT_15m_MOMENTUM_2026-10-23 15:14:59.999000+00:00",
     "BTCUSDT_5m_MOMENTUM_2026-10-23 14:19:59.999000+00:00",
-    "BTCUSDT_15m_MOMENTUM_2026-10-23 14:29:59.999000+00:00"
+    "BTCUSDT_15m_MOMENTUM_2026-10-23 14:29:59.999000+00:00",
+    "BTCUSDT_5m_MOMENTUM_2026-10-23 17:44:59.999000+00:00"
   ],
   "open": [
     {
@@ -929,7 +930,7 @@
       "fee_open": 11.345273114520841,
       "opened_at": "2026-10-23T15:04:59Z",
       "opened_ms": 1792767899999,
-      "checked_until_ms": 1792777500000,
+      "checked_until_ms": 1792777800000,
       "source": "Signal-Bot",
       "capped": false
     },
@@ -949,7 +950,27 @@
       "fee_open": 8.754985441307408,
       "opened_at": "2026-10-23T15:14:59Z",
       "opened_ms": 1792768499999,
-      "checked_until_ms": 1792777500000,
+      "checked_until_ms": 1792777800000,
+      "source": "Signal-Bot",
+      "capped": false
+    },
+    {
+      "id": "34cac2",
+      "symbol": "BTCUSDT",
+      "timeframe": "5m",
+      "category": "Momentum",
+      "side": "SELL",
+      "signal_entry": 81578.01,
+      "entry": 81578.01,
+      "sl": 81713.17392857143,
+      "tp": 81375.26410714284,
+      "qty": 0.6989079382817878,
+      "notional": 57015.51877823106,
+      "risk": 94.46714264792752,
+      "fee_open": 28.50775938911553,
+      "opened_at": "2026-10-23T17:44:59Z",
+      "opened_ms": 1792777499999,
+      "checked_until_ms": 1792777800000,
       "source": "Signal-Bot",
       "capped": false
     }
