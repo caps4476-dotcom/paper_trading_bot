@@ -1,9 +1,9 @@
 {
-  "balance": 9481.24941283731,
+  "balance": 9617.66007060123,
   "start_balance": 10000.0,
   "risk_percent": 1.0,
   "paused": false,
-  "telegram_offset": 644349065,
+  "telegram_offset": 644349066,
   "seen_channels": [
     "-1003990770236"
   ],
@@ -914,28 +914,7 @@
     "BTCUSDT_5m_MOMENTUM_2026-10-23 17:44:59.999000+00:00",
     "BTCUSDT_5m_MOMENTUM_2026-10-23 21:44:59.999000+00:00"
   ],
-  "open": [
-    {
-      "id": "662725",
-      "symbol": "BTCUSDT",
-      "timeframe": "15m",
-      "category": "Momentum",
-      "side": "SELL",
-      "signal_entry": 81486.01,
-      "entry": 81486.01,
-      "sl": 81936.1557142857,
-      "tp": 80810.79142857142,
-      "qty": 0.21488315457604093,
-      "notional": 17509.970882614816,
-      "risk": 96.72873110459874,
-      "fee_open": 8.754985441307408,
-      "opened_at": "2026-10-23T15:14:59Z",
-      "opened_ms": 1792768499999,
-      "checked_until_ms": 1792795800000,
-      "source": "Signal-Bot",
-      "capped": false
-    }
-  ],
+  "open": [],
   "closed": [
     {
       "id": "856cce",
@@ -1113,6 +1092,31 @@
       "r_multiple": 1.2664456366501438,
       "closed_at": "2026-10-23T22:50:28Z",
       "balance_after": 9481.24941283731
+    },
+    {
+      "id": "662725",
+      "symbol": "BTCUSDT",
+      "timeframe": "15m",
+      "category": "Momentum",
+      "side": "SELL",
+      "signal_entry": 81486.01,
+      "entry": 81486.01,
+      "sl": 81936.1557142857,
+      "tp": 80810.79142857142,
+      "qty": 0.21488315457604093,
+      "notional": 17509.970882614816,
+      "risk": 96.72873110459874,
+      "fee_open": 8.754985441307408,
+      "opened_at": "2026-10-23T15:14:59Z",
+      "opened_ms": 1792768499999,
+      "source": "Signal-Bot",
+      "capped": false,
+      "exit": 80810.79142857142,
+      "reason": "TP",
+      "pnl": 127.6556723226133,
+      "r_multiple": 1.3197285942329933,
+      "closed_at": "2026-10-23T22:55:22Z",
+      "balance_after": 9617.66007060123
     }
   ],
   "created": "2026-10-23T08:40:40Z"
