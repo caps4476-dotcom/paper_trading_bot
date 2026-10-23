@@ -3,8 +3,10 @@
   "start_balance": 10000.0,
   "risk_percent": 1.0,
   "paused": false,
-  "telegram_offset": 644349048,
-  "seen_channels": [],
+  "telegram_offset": 644349049,
+  "seen_channels": [
+    "-1003990770236"
+  ],
   "open": [],
   "closed": [],
   "created": "2026-10-23T08:40:40Z"
