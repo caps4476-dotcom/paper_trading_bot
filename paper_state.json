@@ -1,5 +1,5 @@
 {
-  "balance": 9347.25877856034,
+  "balance": 9481.24941283731,
   "start_balance": 10000.0,
   "risk_percent": 1.0,
   "paused": false,
@@ -916,26 +916,6 @@
   ],
   "open": [
     {
-      "id": "940ea3",
-      "symbol": "BTCUSDT",
-      "timeframe": "5m",
-      "category": "Momentum",
-      "side": "SELL",
-      "signal_entry": 81560.01,
-      "entry": 81560.01,
-      "sl": 81908.10428571427,
-      "tp": 81037.86857142858,
-      "qty": 0.2782067612429386,
-      "notional": 22690.546229041684,
-      "risk": 96.84218383574394,
-      "fee_open": 11.345273114520841,
-      "opened_at": "2026-10-23T15:04:59Z",
-      "opened_ms": 1792767899999,
-      "checked_until_ms": 1792795500000,
-      "source": "Signal-Bot",
-      "capped": false
-    },
-    {
       "id": "662725",
       "symbol": "BTCUSDT",
       "timeframe": "15m",
@@ -951,7 +931,7 @@
       "fee_open": 8.754985441307408,
       "opened_at": "2026-10-23T15:14:59Z",
       "opened_ms": 1792768499999,
-      "checked_until_ms": 1792795500000,
+      "checked_until_ms": 1792795800000,
       "source": "Signal-Bot",
       "capped": false
     }
@@ -1108,6 +1088,31 @@
       "r_multiple": -1.9326664804606344,
       "closed_at": "2026-10-23T22:05:24Z",
       "balance_after": 9347.25877856034
+    },
+    {
+      "id": "940ea3",
+      "symbol": "BTCUSDT",
+      "timeframe": "5m",
+      "category": "Momentum",
+      "side": "SELL",
+      "signal_entry": 81560.01,
+      "entry": 81560.01,
+      "sl": 81908.10428571427,
+      "tp": 81037.86857142858,
+      "qty": 0.2782067612429386,
+      "notional": 22690.546229041684,
+      "risk": 96.84218383574394,
+      "fee_open": 11.345273114520841,
+      "opened_at": "2026-10-23T15:04:59Z",
+      "opened_ms": 1792767899999,
+      "source": "Signal-Bot",
+      "capped": false,
+      "exit": 81037.86857142858,
+      "reason": "TP",
+      "pnl": 122.64536116244899,
+      "r_multiple": 1.2664456366501438,
+      "closed_at": "2026-10-23T22:50:28Z",
+      "balance_after": 9481.24941283731
     }
   ],
   "created": "2026-10-23T08:40:40Z"
