@@ -123,6 +123,12 @@
   .vinfo > div{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:8px 10px}
   .vinfo .k{font-size:11px;color:var(--muted)} .vinfo .v{font-size:13px;font-weight:600;margin-top:2px}
   .vinfo .sl .v{color:var(--down)} .vinfo .tp .v{color:var(--up)}
+  .vwhy{margin:0 16px 8px;padding:9px 12px;border-radius:10px;background:rgba(240,185,11,.08);border:1px solid rgba(240,185,11,.25);font-size:12.5px;line-height:1.45;color:#d9dce3}
+  .vwhy b{color:var(--accent)}
+  .vwhy summary{list-style:none;cursor:pointer}
+  .vwhy summary::-webkit-details-marker{display:none}
+  .vwhy .rule{color:var(--muted);margin-top:6px}
+  .strat{font-size:11px;color:var(--muted);font-weight:400}
 </style>
 <script src="https://unpkg.com/lightweight-charts@4.1.3/dist/lightweight-charts.standalone.production.js" defer></script>
 </head>
@@ -164,7 +170,7 @@
 </div>
 
 <div class="card">
-  <h2>Nach Markt</h2>
+  <h2>Nach Strategie</h2>
   <div id="markets"></div>
 </div>
 
@@ -192,6 +198,7 @@
     <div><div class="lbl" id="vPnlLbl">Gewinn/Verlust</div><div class="big num" id="vPnl">–</div></div>
     <div style="text-align:right"><div class="lbl">Abstand SL · TP</div><div class="num" id="vDist" style="font-size:13px">–</div></div>
   </div>
+  <details class="vwhy" id="vWhy"></details>
   <div class="tfs" id="vTfs">
     <button data-tf="1m">1m</button><button data-tf="5m">5m</button><button data-tf="15m">15m</button><button data-tf="1h">1h</button><button data-tf="4h">4h</button>
   </div>
@@ -429,14 +436,14 @@
   function renderMarkets(){
     const by = {};
     state.closed.forEach(c => {
-      const k = short(c.symbol) + ' ' + c.timeframe.toUpperCase();
+      const k = short(c.symbol) + '|' + c.category + ' ' + c.timeframe.toUpperCase();
       const s = by[k] ||= {n:0, w:0, p:0};
       s.n++; s.w += c.pnl > 0; s.p += c.pnl;
     });
     const rows = Object.entries(by).sort((a, b) => b[1].p - a[1].p);
     if (!rows.length){ $('markets').innerHTML = '<div class="empty">Erscheint nach dem ersten abgeschlossenen Trade.</div>'; return; }
     $('markets').innerHTML = `<table><thead><tr><th>Markt</th><th>Trades</th><th>Quote</th><th>Ergebnis</th></tr></thead><tbody>
-      ${rows.map(([k, s]) => `<tr><td><b>${esc(k)}</b></td><td class="num">${s.n}</td>
+      ${rows.map(([k, s]) => `<tr><td><b>${esc(k.split('|')[0])}</b><br><span class="strat">${esc(k.split('|')[1])}</span></td><td class="num">${s.n}</td>
         <td class="num">${Math.round(s.w / s.n * 100)} %<span class="wr"><i style="width:${s.w / s.n * 100}%"></i></span></td>
         <td class="num ${cls(s.p)}">${money(s.p, true)}</td></tr>`).join('')}
     </tbody></table>`;
@@ -454,7 +461,7 @@
     $('hist').innerHTML = c.slice(0, histLimit).map(t => `<li class="click" data-closed="${esc(t.id)}">
       <div class="ic ${esc(t.reason)}">${label[t.reason] || '•'}</div>
       <div><b>${esc(short(t.symbol))}</b> <span class="tag ${t.side === 'BUY' ? 'long' : 'short'}">${t.side === 'BUY' ? 'LONG' : 'SHORT'}</span>
-        <div class="meta num">${when(t.closed_at)} · ${px(t.entry)} → ${px(t.exit)}</div></div>
+        <div class="meta num">${esc(t.timeframe.toUpperCase())} ${esc(t.category)} · ${when(t.closed_at)} · ${px(t.entry)} → ${px(t.exit)}</div></div>
       <div class="pnl num ${cls(t.pnl)}">${money(t.pnl, true)}<small>${(t.r_multiple >= 0 ? '+' : '') + nf2.format(t.r_multiple)} R</small></div>
     </li>`).join('');
     $('moreBtn').style.display = c.length > histLimit ? 'block' : 'none';
@@ -495,6 +502,24 @@
     v.tf = b.dataset.tf; loadChart();
   });
 
+  const WHY = {
+    'RETEST|BUY':'Aufwärtstrend (Kurs über EMA 200). Die Kerze hat das untere Bollinger-Band berührt und grün wieder darüber geschlossen = Abprall. RSI ≤ 40 = überverkauft.',
+    'RETEST|SELL':'Abwärtstrend (Kurs unter EMA 200). Die Kerze hat das obere Bollinger-Band berührt und rot wieder darunter geschlossen = Ablehnung. RSI ≥ 60 = überkauft.',
+    'MOMENTUM|BUY':'Aufwärtstrend (Kurs über EMA 200). Die schnelle EMA 9 kreuzt die EMA 21 nach oben = Schwung dreht nach oben. RSI ≥ 55 bestätigt Stärke.',
+    'MOMENTUM|SELL':'Abwärtstrend (Kurs unter EMA 200). Die schnelle EMA 9 kreuzt die EMA 21 nach unten = Schwung dreht nach unten. RSI ≤ 45 bestätigt Schwäche.',
+    'BREAKOUT|BUY':'Aufwärtstrend (Kurs über EMA 200). Der Kurs bricht über das obere Bollinger-Band aus, RSI ≥ 60 bestätigt den Ausbruch.',
+    'BREAKOUT|SELL':'Abwärtstrend (Kurs unter EMA 200). Der Kurs bricht unter das untere Bollinger-Band aus, RSI ≤ 40 bestätigt den Ausbruch.'
+  };
+  const catKey = t => t.category_key || ({'re-test':'RETEST','momentum':'MOMENTUM','breakout':'BREAKOUT'}[(t.category || '').toLowerCase()] || '');
+  function whyHtml(t){
+    const txt = WHY[catKey(t) + '|' + t.side];
+    if (!txt) return '';
+    const rsi = t.rsi != null ? ` (RSI war ${nf2.format(t.rsi)})` : '';
+    const sl = catKey(t) === 'BREAKOUT' ? '2' : '1,5';
+    return `<summary><b>💡 Warum dieser Trade?</b> ${esc(txt)}${rsi} <span class="muted">· mehr</span></summary>
+      <div class="rule">Stop Loss = ${sl}× ATR (die übliche Kerzengröße der letzten 14 Kerzen) vom Einstieg entfernt. Take Profit = 1,5× dieser Abstand (CRV 1:1,5). Positionsgröße: so gewählt, dass ein Stop Loss genau ${String(state.risk_percent).replace('.', ',')} % des Kontos kostet (plus Gebühren).</div>`;
+  }
+
   function openView(kind, id){
     const t = findTrade(kind, id); if (!t) return;
     v.trade = t; v.closed = kind === 'closed';
@@ -526,6 +551,9 @@
     $('vMeta').textContent = `${t.timeframe.toUpperCase()} ${t.category} · #${t.id}` +
       (v.closed ? ` · geschlossen ${when(t.closed_at)}` : ` · seit ${since(t.opened_at)}`);
     $('vTfs').querySelectorAll('button').forEach(b => b.classList.toggle('on', b.dataset.tf === v.tf));
+    const w = whyHtml(t); const wEl = $('vWhy');
+    if (wEl.dataset.id !== t.id + v.closed){ wEl.innerHTML = w; wEl.open = false; wEl.dataset.id = t.id + v.closed; }
+    wEl.style.display = w ? 'block' : 'none';
     const reason = {TP:'Take Profit', SL:'Stop Loss', ZEIT:'Zeitlimit', MANUELL:'Manuell'}[t.reason] || '';
     $('vInfo').innerHTML = `
       <div><div class="k">Einstieg</div><div class="v">${px(t.entry)}</div></div>

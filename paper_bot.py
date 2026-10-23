@@ -44,6 +44,55 @@ MAX_SIGNAL_AGE_MIN = 180     # ältere Signale werden ignoriert (z. B. alte Eint
 SIGNAL_REPO = os.getenv("SIGNAL_REPO", "").strip() or "caps4476-dotcom/15min-trading-bot"
 SIGNAL_BRANCH = "main"
 CATEGORY_NAMES = {"RETEST": "Re-Test", "BREAKOUT": "Breakout", "MOMENTUM": "Momentum"}
+
+# Welche Signale werden gehandelt? Alles, was hier nicht steht, wird ignoriert.
+# Optionen je Markt: "RETEST", "MOMENTUM", "BREAKOUT"
+# Beispiel alles handeln: TRADE_FILTER = {}  (leer = kein Filter)
+TRADE_FILTER = {}   # aktuell: ALLE Signale werden gehandelt
+# Beispiel nur bestimmte Signale:
+# TRADE_FILTER = {
+#     "BTCUSDT": ["RETEST", "MOMENTUM"],
+#     "PAXGUSDT": ["RETEST"],   # Gold
+#     "EURUSDT": ["RETEST"],    # EUR/USD
+# }
+
+# Kurze Erklärung, WARUM ein Signal entsteht (Regeln aus dem Signal-Bot)
+WHY = {
+    ("RETEST", "BUY"): "Aufwärtstrend (Kurs über EMA 200). Die Kerze hat das untere Bollinger-Band "
+                       "berührt und grün wieder darüber geschlossen = Abprall. RSI ≤ 40 = überverkauft.",
+    ("RETEST", "SELL"): "Abwärtstrend (Kurs unter EMA 200). Die Kerze hat das obere Bollinger-Band "
+                        "berührt und rot wieder darunter geschlossen = Ablehnung. RSI ≥ 60 = überkauft.",
+    ("MOMENTUM", "BUY"): "Aufwärtstrend (Kurs über EMA 200). Die schnelle EMA 9 kreuzt die EMA 21 "
+                         "nach oben = Schwung dreht nach oben. RSI ≥ 55 bestätigt Stärke.",
+    ("MOMENTUM", "SELL"): "Abwärtstrend (Kurs unter EMA 200). Die schnelle EMA 9 kreuzt die EMA 21 "
+                          "nach unten = Schwung dreht nach unten. RSI ≤ 45 bestätigt Schwäche.",
+    ("BREAKOUT", "BUY"): "Aufwärtstrend (Kurs über EMA 200). Der Kurs bricht über das obere "
+                         "Bollinger-Band aus, RSI ≥ 60 bestätigt den Ausbruch.",
+    ("BREAKOUT", "SELL"): "Abwärtstrend (Kurs unter EMA 200). Der Kurs bricht unter das untere "
+                          "Bollinger-Band aus, RSI ≤ 40 bestätigt den Ausbruch.",
+}
+SL_TP_RULE = "SL = 1,5× bzw. 2× ATR (übliche Kerzengröße) vom Einstieg, TP = 1,5× der SL-Abstand."
+
+
+def category_key(category: str) -> str:
+    for k, name in CATEGORY_NAMES.items():
+        if category.lower() in (k.lower(), name.lower()):
+            return k
+    return category.upper()
+
+
+def why_text(cat_key: str, side: str, rsi=None) -> str:
+    txt = WHY.get((cat_key, side), "")
+    if txt and rsi is not None:
+        txt += f" (RSI war {rsi:.1f})"
+    return txt
+
+
+def signal_allowed(symbol: str, category: str) -> bool:
+    """category darf der Schlüssel (RETEST) oder der Anzeigename (Re-Test) sein."""
+    if not TRADE_FILTER:
+        return True
+    return category_key(category) in TRADE_FILTER.get(symbol.upper(), [])
 MAX_TRADE_HOURS = 48         # Trade wird nach dieser Zeit zum Marktpreis geschlossen (0 = nie)
 
 # Optionale Secrets (in GitHub unter Settings -> Secrets -> Actions)
@@ -199,6 +248,7 @@ RE_HEAD = re.compile(r"(\d+[MH])\s+SIGNAL\s+(BUY|SELL)\s*(?:\(([^)]*)\))?\s*-\s*
 RE_ENTRY = re.compile(r"Einstieg[^0-9]*" + NUM, re.I)
 RE_SL = re.compile(r"Stop\s*Loss[^:]*:[^0-9]*" + NUM, re.I)
 RE_TP = re.compile(r"Take\s*Profit[^:]*:[^0-9]*" + NUM, re.I)
+RE_RSI = re.compile(r"RSI[^:]*:[^0-9]*" + NUM, re.I)
 
 
 def _num(s: str) -> float:
@@ -234,6 +284,8 @@ def parse_signal(text: str):
         "sl": _num(sl.group(1)),
         "tp": _num(tp.group(1)),
     }
+    rsi = RE_RSI.search(t)
+    sig["rsi"] = _num(rsi.group(1)) if rsi else None
     # Plausibilität: SL und TP müssen auf der richtigen Seite liegen
     if sig["side"] == "BUY" and not (sig["sl"] < sig["entry"] < sig["tp"]):
         return None
@@ -305,6 +357,8 @@ def open_position(state: dict, sig: dict, source: str, at_ms: int):
         "symbol": sig["symbol"],
         "timeframe": sig["timeframe"],
         "category": sig["category"],
+        "category_key": category_key(sig["category"]),
+        "rsi": sig.get("rsi"),
         "side": sig["side"],
         "signal_entry": sig["entry"],
         "entry": price,
@@ -399,6 +453,8 @@ def msg_opened(p: dict) -> str:
         f"SL: {fmt(p['sl'])} · TP: {fmt(p['tp'])}\n"
         f"Größe: {p['qty']:.6g} ({money(p['notional'])})\n"
         f"Risiko: {money(p['risk'])}{extra}"
+        + (f"\n\n💡 <b>Warum?</b> {html.escape(why_text(p.get('category_key', ''), p['side'], p.get('rsi')))}"
+           if WHY.get((p.get("category_key", ""), p["side"])) else "")
     )
 
 
@@ -438,11 +494,11 @@ def stats_text(state: dict) -> str:
         f"Profit-Faktor: {pf:.2f}" if pf != float("inf") else "Profit-Faktor: ∞",
         f"Ø Gewinn: {money(gross_win / len(wins)) if wins else '–'} · Ø Verlust: {money(-gross_loss / len(losses)) if losses else '–'}",
         f"Max. Rückgang: {max_dd:.1f} %",
-        "\n<b>Nach Markt</b>",
+        "\n<b>Nach Strategie</b>",
     ]
     by_sym = {}
     for c in closed:
-        k = f"{short(c['symbol'])} {c['timeframe'].upper()}"
+        k = f"{short(c['symbol'])} {c['category']} {c['timeframe'].upper()}"
         s = by_sym.setdefault(k, [0, 0, 0.0])
         s[0] += 1
         s[1] += c["pnl"] > 0
@@ -472,7 +528,10 @@ def status_text(state: dict) -> str:
         f"Mit offenen Trades: {money(state['balance'] + unreal)}\n"
         f"Seit Start: {money(total, True)} ({total / state['start_balance'] * 100:+.2f} %)\n"
         f"Risiko pro Trade: {state['risk_percent']:g} %\n"
-        f"Offene Trades: {len(state['open'])}/{MAX_OPEN_POSITIONS}"
+        f"Offene Trades: {len(state['open'])}/{MAX_OPEN_POSITIONS}\n"
+        f"Gehandelt wird: " + (", ".join(
+            f"{short(s)} {'/'.join(CATEGORY_NAMES.get(c, c) for c in cs)}"
+            for s, cs in TRADE_FILTER.items()) if TRADE_FILTER else "alle Signale")
     )
     if rows:
         txt += "\n\n" + "\n".join(rows)
@@ -588,6 +647,10 @@ def process_signal_text(state: dict, text: str, msg_date: int, source: str):
     if not sig:
         return
     owner = owner_id(state)
+    if not signal_allowed(sig["symbol"], sig["category"]):
+        tg_send(owner, f"⏭ Signal {short(sig['symbol'])} {html.escape(sig['category'])} nicht gehandelt: "
+                       f"durch Filter ausgeschlossen (TRADE_FILTER in paper_bot.py)")
+        return
     age_min = (time.time() - msg_date) / 60
     if age_min > MAX_SIGNAL_AGE_MIN:
         log(f"Signal zu alt ({age_min:.0f} min) – übersprungen")
@@ -651,7 +714,11 @@ def process_repo_signals(state: dict):
             "entry": float(s["entry"]),
             "sl": float(s["sl"]),
             "tp": float(s["tp"]),
+            "rsi": float(s["rsi"]) if s.get("rsi") is not None else None,
         }
+        if not signal_allowed(s["symbol"], s["category"]):
+            log(f"Gefiltert: {s['symbol']} {s['interval']} {s['category']}")
+            continue
         ok_buy = sig["side"] == "BUY" and sig["sl"] < sig["entry"] < sig["tp"]
         ok_sell = sig["side"] == "SELL" and sig["tp"] < sig["entry"] < sig["sl"]
         if not (ok_buy or ok_sell):
