@@ -94,7 +94,37 @@
   dialog .btns{display:flex;gap:8px;margin-top:16px;justify-content:flex-end}
   dialog button{border:none;border-radius:8px;padding:10px 16px;font:inherit;font-weight:600}
   .primary{background:var(--accent);color:#111} .ghost{background:var(--panel2);color:var(--text)}
+
+  .pos,.hist li.click{cursor:pointer;-webkit-tap-highlight-color:transparent;transition:border-color .15s,background .15s}
+  .pos:active{border-color:#3a4458;background:#1b2231}
+  .hist li.click:active{background:var(--panel2)}
+  .pos .go{font-size:11px;color:var(--dim);text-align:right;margin-top:8px}
+
+  /* ---------- Live-Chart-Ansicht ---------- */
+  #view{position:fixed;inset:0;z-index:50;background:var(--bg);display:none;flex-direction:column}
+  #view.on{display:flex}
+  .vtop{display:flex;align-items:center;gap:10px;padding:12px 16px 8px}
+  .back{background:var(--panel);border:1px solid var(--line);color:var(--text);border-radius:10px;width:40px;height:40px;font-size:20px;flex:none}
+  .vtitle{flex:1;min-width:0}
+  .vtitle .sym{font-size:18px}
+  .vprice{text-align:right}
+  .vprice .p{font-size:18px;font-weight:600}
+  .vprice .d{font-size:12px}
+  .vpnl{display:flex;justify-content:space-between;align-items:center;margin:0 16px 8px;padding:10px 12px;border-radius:10px;background:var(--panel);border:1px solid var(--line)}
+  .vpnl .big{font-size:20px;font-weight:600}
+  .vpnl .lbl{font-size:11px;color:var(--muted)}
+  .tfs{display:flex;gap:6px;padding:0 16px 8px}
+  .tfs button{flex:1;background:var(--panel);border:1px solid var(--line);color:var(--muted);border-radius:8px;padding:7px 0;font:inherit;font-size:13px;font-weight:600}
+  .tfs button.on{background:var(--panel2);color:var(--accent);border-color:#3a4458}
+  #cwrap{flex:1;min-height:0;position:relative;margin:0 8px}
+  #cbox{position:absolute;inset:0}
+  #cmsg{position:absolute;inset:0;display:grid;place-items:center;color:var(--muted);font-size:14px;pointer-events:none}
+  .vinfo{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:10px 16px calc(14px + env(safe-area-inset-bottom))}
+  .vinfo > div{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:8px 10px}
+  .vinfo .k{font-size:11px;color:var(--muted)} .vinfo .v{font-size:13px;font-weight:600;margin-top:2px}
+  .vinfo .sl .v{color:var(--down)} .vinfo .tp .v{color:var(--up)}
 </style>
+<script src="https://unpkg.com/lightweight-charts@4.1.3/dist/lightweight-charts.standalone.production.js" defer></script>
 </head>
 <body>
 
@@ -148,6 +178,26 @@
   Nur Anzeige – steuern kannst du den Bot weiter in Telegram.<br>
   Konto aktualisiert alle 60 s · Kurse alle 10 s · <span id="stamp"></span>
 </footer>
+
+<div id="view" aria-modal="true" role="dialog">
+  <div class="vtop">
+    <button class="back" id="vBack" aria-label="Zurück">‹</button>
+    <div class="vtitle">
+      <div class="sym" id="vSym"></div>
+      <div class="meta" id="vMeta"></div>
+    </div>
+    <div class="vprice num"><div class="p" id="vPrice">–</div><div class="d" id="vLive"></div></div>
+  </div>
+  <div class="vpnl">
+    <div><div class="lbl" id="vPnlLbl">Gewinn/Verlust</div><div class="big num" id="vPnl">–</div></div>
+    <div style="text-align:right"><div class="lbl">Abstand SL · TP</div><div class="num" id="vDist" style="font-size:13px">–</div></div>
+  </div>
+  <div class="tfs" id="vTfs">
+    <button data-tf="1m">1m</button><button data-tf="5m">5m</button><button data-tf="15m">15m</button><button data-tf="1h">1h</button><button data-tf="4h">4h</button>
+  </div>
+  <div id="cwrap"><div id="cbox"></div><div id="cmsg">Chart lädt…</div></div>
+  <div class="vinfo num" id="vInfo"></div>
+</div>
 
 <dialog id="cfg">
   <b>Einstellungen</b>
@@ -357,7 +407,7 @@
       const dotCol = u == null ? 'var(--dim)' : u >= 0 ? 'var(--up)' : 'var(--down)';
       // Bei SHORT liegt der TP links (niedriger Preis) – Balken so drehen, dass SL immer links ist
       const flip = v => long ? pos(v) : 100 - pos(v);
-      return `<div class="pos">
+      return `<div class="pos" data-open="${esc(p.id)}">
         <div class="row">
           <div>
             <div class="sym">${esc(short(p.symbol))}<span class="tag ${long ? 'long' : 'short'}">${long ? 'LONG' : 'SHORT'}</span></div>
@@ -371,6 +421,7 @@
           ${cur != null ? `<div class="cur" style="left:${flip(cur)}%;background:${dotCol}"></div>` : ''}
         </div>
         <div class="levels num"><span>SL <b>${px(p.sl)}</b></span><span>Einstieg <b>${px(p.entry)}</b></span><span>TP <b>${px(p.tp)}</b></span></div>
+        <div class="go">Live-Chart öffnen ›</div>
       </div>`;
     }).join('');
   }
@@ -400,7 +451,7 @@
       $('moreBtn').style.display = 'none';
       return;
     }
-    $('hist').innerHTML = c.slice(0, histLimit).map(t => `<li>
+    $('hist').innerHTML = c.slice(0, histLimit).map(t => `<li class="click" data-closed="${esc(t.id)}">
       <div class="ic ${esc(t.reason)}">${label[t.reason] || '•'}</div>
       <div><b>${esc(short(t.symbol))}</b> <span class="tag ${t.side === 'BUY' ? 'long' : 'short'}">${t.side === 'BUY' ? 'LONG' : 'SHORT'}</span>
         <div class="meta num">${when(t.closed_at)} · ${px(t.entry)} → ${px(t.exit)}</div></div>
@@ -422,8 +473,212 @@
   $('moreBtn').onclick = () => { histLimit += 20; renderHist(); };
   window.addEventListener('resize', () => state && render());
 
+  // ---------- Live-Chart-Ansicht ----------
+  const TF_MS = {'1m':6e4, '5m':3e5, '15m':9e5, '1h':36e5, '4h':144e5};
+  const TZ = -new Date().getTimezoneOffset() * 60;   // Chart in deiner Ortszeit anzeigen
+  const KLINES = ['https://data-api.binance.vision/api/v3/klines', 'https://api.binance.com/api/v3/klines'];
+  const v = {trade:null, closed:false, tf:'5m', chart:null, series:null, ws:null, poll:null, last:null, token:0};
+
+  const findTrade = (kind, id) => (kind === 'open' ? state.open : state.closed).find(t => t.id === id);
+  const decimals = p => p < 10 ? 5 : p < 1000 ? 3 : 2;
+
+  $('open').addEventListener('click', e => {
+    const el = e.target.closest('[data-open]'); if (el) openView('open', el.dataset.open);
+  });
+  $('hist').addEventListener('click', e => {
+    const el = e.target.closest('[data-closed]'); if (el) openView('closed', el.dataset.closed);
+  });
+  $('vBack').onclick = () => history.state && history.state.chart ? history.back() : closeView();
+  window.addEventListener('popstate', () => { if ($('view').classList.contains('on')) closeView(); });
+  $('vTfs').addEventListener('click', e => {
+    const b = e.target.closest('button[data-tf]'); if (!b || b.dataset.tf === v.tf) return;
+    v.tf = b.dataset.tf; loadChart();
+  });
+
+  function openView(kind, id){
+    const t = findTrade(kind, id); if (!t) return;
+    v.trade = t; v.closed = kind === 'closed';
+    v.tf = TF_MS[t.timeframe] ? t.timeframe : '5m';
+    v.last = v.closed ? t.exit : (prices[t.symbol] ?? null);
+    $('view').classList.add('on');
+    document.body.style.overflow = 'hidden';
+    history.pushState({chart:1}, '');
+    fillHeader();
+    loadChart();
+  }
+
+  function closeView(){
+    $('view').classList.remove('on');
+    document.body.style.overflow = '';
+    stopLive();
+    if (v.chart){ v.chart.remove(); v.chart = null; v.series = null; v.lines = null; }
+    v.trade = null;
+  }
+
+  function stopLive(){
+    if (v.ws){ v.ws.onclose = null; v.ws.close(); v.ws = null; }
+    clearInterval(v.poll); v.poll = null;
+  }
+
+  function fillHeader(){
+    const t = v.trade, long = t.side === 'BUY';
+    $('vSym').innerHTML = `${esc(short(t.symbol))}<span class="tag ${long ? 'long' : 'short'}">${long ? 'LONG' : 'SHORT'}</span>`;
+    $('vMeta').textContent = `${t.timeframe.toUpperCase()} ${t.category} · #${t.id}` +
+      (v.closed ? ` · geschlossen ${when(t.closed_at)}` : ` · seit ${since(t.opened_at)}`);
+    $('vTfs').querySelectorAll('button').forEach(b => b.classList.toggle('on', b.dataset.tf === v.tf));
+    const reason = {TP:'Take Profit', SL:'Stop Loss', ZEIT:'Zeitlimit', MANUELL:'Manuell'}[t.reason] || '';
+    $('vInfo').innerHTML = `
+      <div><div class="k">Einstieg</div><div class="v">${px(t.entry)}</div></div>
+      <div class="sl"><div class="k">Stop Loss</div><div class="v">${px(t.sl)}</div></div>
+      <div class="tp"><div class="k">Take Profit</div><div class="v">${px(t.tp)}</div></div>
+      <div><div class="k">Größe</div><div class="v">${money(t.notional ?? t.qty * t.entry)}</div></div>
+      <div><div class="k">Risiko</div><div class="v">${money(t.risk)}</div></div>
+      <div><div class="k">${v.closed ? 'Ausstieg' : 'Eröffnet'}</div><div class="v">${v.closed ? px(t.exit) + ' · ' + reason : when(t.opened_at)}</div></div>`;
+    updateLive();
+  }
+
+  function updateLive(){
+    const t = v.trade; if (!t) return;
+    const p = v.last;
+    $('vPrice').textContent = p == null ? '–' : px(p);
+    $('vLive').innerHTML = v.closed ? '<span class="muted">abgeschlossen</span>' :
+      (v.ws && v.ws.readyState === 1 ? '<span class="up">● live</span>' : '<span class="muted">● aktualisiert alle 5 s</span>');
+    let pnl, r;
+    if (v.closed){ pnl = t.pnl; r = t.r_multiple; $('vPnlLbl').textContent = 'Ergebnis (inkl. Gebühren)'; }
+    else if (p != null){
+      pnl = (p - t.entry) * t.qty * (t.side === 'BUY' ? 1 : -1);
+      r = t.risk ? pnl / t.risk : 0;
+      $('vPnlLbl').textContent = 'Offener Gewinn/Verlust';
+    }
+    $('vPnl').className = 'big num ' + (pnl == null ? '' : cls(pnl));
+    $('vPnl').innerHTML = pnl == null ? '–' : `${money(pnl, true)} <span style="font-size:13px">${(r >= 0 ? '+' : '') + nf2.format(r)} R</span>`;
+    if (p != null && !v.closed){
+      const dSl = Math.abs(p - t.sl) / p * 100, dTp = Math.abs(t.tp - p) / p * 100;
+      $('vDist').innerHTML = `<span class="down">${nf2.format(dSl)} %</span> · <span class="up">${nf2.format(dTp)} %</span>`;
+    } else $('vDist').textContent = v.closed ? '–' : '…';
+  }
+
+  async function fetchKlines(sym, tf, params){
+    const q = new URLSearchParams({symbol:sym, interval:tf, limit:'500', ...params});
+    for (const u of KLINES){
+      try { const r = await fetch(`${u}?${q}`, {cache:'no-store'}); if (r.ok) return await r.json(); } catch {}
+    }
+    throw new Error('Keine Kursdaten');
+  }
+  const toBar = k => ({time: Math.floor(k[0] / 1000) + TZ, open:+k[1], high:+k[2], low:+k[3], close:+k[4]});
+
+  function ensureChart(){
+    if (v.chart) return true;
+    if (!window.LightweightCharts){ $('cmsg').textContent = 'Chart-Bibliothek lädt nicht – Internet prüfen.'; return false; }
+    const box = $('cbox');
+    v.chart = LightweightCharts.createChart(box, {
+      autoSize: true,
+      layout: {background:{type:'solid', color:'#0b0e14'}, textColor:'#8a93a6', fontFamily:'JetBrains Mono, monospace', fontSize:11},
+      grid: {vertLines:{color:'#151b27'}, horzLines:{color:'#151b27'}},
+      rightPriceScale: {borderColor:'#232b3b', scaleMargins:{top:0.1, bottom:0.1}},
+      timeScale: {borderColor:'#232b3b', timeVisible:true, secondsVisible:false, rightOffset:4},
+      crosshair: {mode: 0},
+      localization: {locale:'de-DE'},
+    });
+    v.series = v.chart.addCandlestickSeries({
+      upColor:'#22c55e', downColor:'#ef4444', borderVisible:false,
+      wickUpColor:'#22c55e', wickDownColor:'#ef4444',
+    });
+    return true;
+  }
+
+  async function loadChart(){
+    const token = ++v.token;
+    stopLive();
+    fillHeader();
+    $('cmsg').style.display = 'grid'; $('cmsg').textContent = 'Chart lädt…';
+    // Bibliothek wird mit "defer" geladen – kurz warten, falls sie noch nicht da ist
+    for (let i = 0; i < 30 && !window.LightweightCharts; i++) await new Promise(r => setTimeout(r, 100));
+    if (!ensureChart()) return;
+
+    const t = v.trade, tfMs = TF_MS[v.tf];
+    const openMs = Date.parse(t.opened_at), closeMs = v.closed ? Date.parse(t.closed_at) : null;
+    let params = {};
+    if (v.closed){
+      // ganzen Trade zeigen, mit etwas Vorlauf und Nachlauf
+      const span = closeMs - openMs, pad = Math.max(span * 0.6, tfMs * 40);
+      params = {startTime: String(Math.floor(openMs - pad)), endTime: String(Math.ceil(closeMs + pad))};
+    }
+    let raw;
+    try { raw = await fetchKlines(t.symbol, v.tf, params); }
+    catch { if (token === v.token) $('cmsg').textContent = 'Kursdaten nicht erreichbar.'; return; }
+    if (token !== v.token || !v.series) return;
+
+    const d = decimals(t.entry);
+    v.series.applyOptions({priceFormat:{type:'price', precision:d, minMove: Math.pow(10, -d)}});
+    v.series.setData(raw.map(toBar));
+    $('cmsg').style.display = 'none';
+
+    // Linien für Einstieg, SL, TP (und Ausstieg)
+    (v.lines || []).forEach(l => { try { v.series.removePriceLine(l); } catch {} });
+    const L = (price, color, title, style) => v.series.createPriceLine({price, color, lineWidth:1, lineStyle:style, axisLabelVisible:true, title});
+    v.lines = [L(t.entry, '#f0b90b', 'Einstieg', 0), L(t.sl, '#ef4444', 'SL', 2), L(t.tp, '#22c55e', 'TP', 2)];
+
+    // Markierungen: Einstieg (und Ausstieg)
+    const barTime = ms => Math.floor(ms / tfMs) * tfMs / 1000 + TZ;
+    const firstBar = raw.length ? raw[0][0] : Infinity;
+    const long = t.side === 'BUY';
+    const marks = [];
+    if (openMs >= firstBar) marks.push({time: barTime(openMs), position: long ? 'belowBar' : 'aboveBar',
+      color:'#f0b90b', shape: long ? 'arrowUp' : 'arrowDown', text: long ? 'Kauf' : 'Verkauf'});
+    if (v.closed && closeMs >= firstBar) marks.push({time: barTime(closeMs), position: long ? 'aboveBar' : 'belowBar',
+      color: t.pnl > 0 ? '#22c55e' : '#ef4444', shape:'circle', text: t.reason});
+    marks.sort((a, b) => a.time - b.time);
+    v.series.setMarkers(marks);
+
+    if (v.closed){
+      v.chart.timeScale().fitContent();
+    } else {
+      const n = raw.length;
+      v.chart.timeScale().setVisibleLogicalRange({from: Math.max(0, n - 90), to: n + 4});
+      v.last = +raw[n - 1][4];
+      updateLive();
+      startLive(token);
+    }
+  }
+
+  function onTick(k){
+    if (!v.series || v.closed) return;
+    v.series.update(toBar(k));
+    v.last = +k[4];
+    prices[v.trade.symbol] = v.last;
+    updateLive();
+  }
+
+  function startLive(token){
+    const t = v.trade, tf = v.tf;
+    const poll = () => { v.poll = setInterval(async () => {
+      try { const r = await fetchKlines(t.symbol, tf, {limit:'2'}); if (token === v.token) r.forEach(onTick); } catch {}
+    }, 5000); };
+    try {
+      const ws = new WebSocket(`wss://data-stream.binance.vision/ws/${t.symbol.toLowerCase()}@kline_${tf}`);
+      v.ws = ws;
+      ws.onopen = updateLive;
+      ws.onmessage = e => {
+        if (token !== v.token) return;
+        const k = JSON.parse(e.data).k;
+        onTick([k.t, k.o, k.h, k.l, k.c]);
+      };
+      ws.onerror = () => {};
+      ws.onclose = () => { if (token === v.token && !v.poll){ v.ws = null; updateLive(); poll(); } };
+    } catch { poll(); }
+  }
+
+  // Wenn der Trade während der Ansicht geschlossen wurde -> Ansicht umstellen
+  function syncView(){
+    if (!v.trade || v.closed || !state) return;
+    if (state.open.some(t => t.id === v.trade.id)) return;
+    const c = state.closed.find(t => t.id === v.trade.id);
+    if (c){ v.trade = c; v.closed = true; v.last = c.exit; loadChart(); }
+  }
+
   // ---------- Start ----------
-  async function refreshAll(){ if (await loadState()){ await loadPrices(); render(); } }
+  async function refreshAll(){ if (await loadState()){ await loadPrices(); render(); syncView(); } }
   refreshAll();
   setInterval(refreshAll, 60000);
   setInterval(async () => { if (state){ await loadPrices(); render(); } }, 10000);
