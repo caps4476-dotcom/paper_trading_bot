@@ -930,7 +930,7 @@
       "fee_open": 11.345273114520841,
       "opened_at": "2026-10-23T15:04:59Z",
       "opened_ms": 1792767899999,
-      "checked_until_ms": 1792785300000,
+      "checked_until_ms": 1792785600000,
       "source": "Signal-Bot",
       "capped": false
     },
@@ -950,7 +950,7 @@
       "fee_open": 8.754985441307408,
       "opened_at": "2026-10-23T15:14:59Z",
       "opened_ms": 1792768499999,
-      "checked_until_ms": 1792785300000,
+      "checked_until_ms": 1792785600000,
       "source": "Signal-Bot",
       "capped": false
     }
