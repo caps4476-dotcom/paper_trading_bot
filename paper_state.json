@@ -1,0 +1,11 @@
+{
+  "balance": 10000.0,
+  "start_balance": 10000.0,
+  "risk_percent": 1.0,
+  "paused": false,
+  "telegram_offset": 0,
+  "seen_channels": [],
+  "open": [],
+  "closed": [],
+  "created": "2026-10-23T08:40:40Z"
+}
