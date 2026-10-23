@@ -7,9 +7,12 @@ Kein echtes Geld, keine Börsen-Konten, keine API-Schlüssel von Binance nötig 
 nur öffentliche Kursdaten von data-api.binance.vision.
 
 Woher kommen die Signale?
-  1. Aus einem Telegram-KANAL, in dem dein Signal-Bot postet und dieser
-     Paper-Bot Admin ist (automatisch).
+  1. Automatisch aus dem öffentlichen Repo des Signal-Bots (open_trades.json und
+     trade_history.json) – Telegram lässt Bots keine Nachrichten anderer Bots lesen.
   2. Oder: Du LEITEST eine Signal-Nachricht an diesen Bot WEITER (manuell).
+
+Eingestiegen wird rückwirkend zum Zeitpunkt des Signals – so, als hätte der Bot
+sofort gehandelt, auch wenn GitHub ihn erst ein paar Minuten später startet.
 
 Befehle im Chat mit dem Bot: /hilfe
 """
@@ -33,7 +36,14 @@ RISK_PERCENT = 1.0           # Risiko pro Trade in % vom Kontostand (Abstand Ein
 MAX_LEVERAGE = 10.0          # Positionsgröße höchstens Kontostand x Hebel
 FEE_PERCENT = 0.05           # Gebühr pro Seite in % (Binance Futures ~0,05 %, Spot 0,1 %, 0 = ohne)
 MAX_OPEN_POSITIONS = 5       # mehr gleichzeitig offene Trades werden abgelehnt
-MAX_SIGNAL_AGE_MIN = 30      # ältere Signale werden ignoriert (z. B. nach Ausfall)
+MAX_SIGNAL_AGE_MIN = 180     # ältere Signale werden ignoriert (z. B. alte Einträge beim ersten Start)
+
+# Signale werden direkt aus dem (öffentlichen) Repo des Signal-Bots gelesen.
+# Telegram lässt Bots keine Nachrichten anderer Bots lesen – deshalb dieser Weg.
+# Leer lassen ("") = nur Telegram-Weiterleitungen nutzen.
+SIGNAL_REPO = os.getenv("SIGNAL_REPO", "").strip() or "caps4476-dotcom/15min-trading-bot"
+SIGNAL_BRANCH = "main"
+CATEGORY_NAMES = {"RETEST": "Re-Test", "BREAKOUT": "Breakout", "MOMENTUM": "Momentum"}
 MAX_TRADE_HOURS = 48         # Trade wird nach dieser Zeit zum Marktpreis geschlossen (0 = nie)
 
 # Optionale Secrets (in GitHub unter Settings -> Secrets -> Actions)
@@ -67,6 +77,7 @@ def new_state() -> dict:
         "paused": False,
         "telegram_offset": 0,
         "seen_channels": [],
+        "seen_signals": [],
         "open": [],
         "closed": [],
         "created": now_iso(),
@@ -116,6 +127,15 @@ def _price_get(path: str, params: dict):
 
 def get_price(symbol: str) -> float:
     return float(_price_get("ticker/price", {"symbol": symbol})["price"])
+
+
+def get_price_at(symbol: str, ms: int):
+    """Schlusskurs der 1-Minuten-Kerze, die zum Zeitpunkt ms lief bzw. gerade endete."""
+    data = _price_get("klines", {"symbol": symbol, "interval": "1m",
+                                 "endTime": ms, "limit": 1})
+    if not data:
+        return None
+    return float(data[-1][4]), int(data[-1][6])
 
 
 def get_minute_candles(symbol: str, start_ms: int) -> list:
@@ -245,8 +265,10 @@ def short(sym: str) -> str:
     return sym[:-1] if sym.endswith("USDT") else sym
 
 
-def open_position(state: dict, sig: dict, source: str):
-    """Gibt (Position, None) oder (None, Grund) zurück."""
+def open_position(state: dict, sig: dict, source: str, at_ms: int):
+    """Eröffnet RÜCKWIRKEND zum Zeitpunkt at_ms (wann das Signal kam) – so, als hätte
+    der Bot sofort gehandelt. SL/TP werden ab dieser Minute geprüft.
+    Gibt (Position, None) oder (None, Grund) zurück."""
     if state["paused"]:
         return None, "Bot ist pausiert (/start zum Fortsetzen)"
     if len(state["open"]) >= MAX_OPEN_POSITIONS:
@@ -257,15 +279,18 @@ def open_position(state: dict, sig: dict, source: str):
             return None, "gleiches Signal ist schon offen"
 
     try:
-        price = get_price(sig["symbol"])
+        got = get_price_at(sig["symbol"], at_ms)
     except Exception as e:
         return None, f"kein Kurs für {sig['symbol']} ({e})"
+    if not got:
+        return None, f"kein Kurs für {sig['symbol']}"
+    price, candle_close_ms = got
 
-    # Einstieg zum AKTUELLEN Marktpreis – wenn SL/TP schon überschritten, ist das Signal verpasst
+    # Lag der Kurs zum Signalzeitpunkt schon jenseits von SL/TP, war das Signal nicht handelbar
     if sig["side"] == "BUY" and not (sig["sl"] < price < sig["tp"]):
-        return None, f"Kurs {fmt(price)} liegt schon außerhalb von SL/TP"
+        return None, f"Kurs {fmt(price)} lag schon außerhalb von SL/TP"
     if sig["side"] == "SELL" and not (sig["tp"] < price < sig["sl"]):
-        return None, f"Kurs {fmt(price)} liegt schon außerhalb von SL/TP"
+        return None, f"Kurs {fmt(price)} lag schon außerhalb von SL/TP"
 
     risk_amount = state["balance"] * state["risk_percent"] / 100
     qty = risk_amount / abs(price - sig["sl"])
@@ -289,10 +314,10 @@ def open_position(state: dict, sig: dict, source: str):
         "notional": notional,
         "risk": qty * abs(price - sig["sl"]),
         "fee_open": fee_open,
-        "opened_at": now_iso(),
-        "opened_ms": now_ms(),
-        # erst ab der nächsten vollen Minute prüfen (davor war der Trade noch nicht offen)
-        "checked_until_ms": (now_ms() // 60_000 + 1) * 60_000,
+        "opened_at": datetime.fromtimestamp(candle_close_ms / 1000, timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "opened_ms": candle_close_ms,
+        # ab der Minute NACH dem Einstieg prüfen
+        "checked_until_ms": candle_close_ms + 1,
         "source": source,
         "capped": capped,
     }
@@ -480,8 +505,8 @@ def history_text(state: dict) -> str:
 
 HELP = (
     "🤖 <b>Paper Trading Bot</b>\n\n"
-    "Ich lese Signale aus deinem Kanal (oder weitergeleitete Signal-Nachrichten) "
-    "und handle sie mit virtuellem Geld.\n\n"
+    "Ich lese die Signale deines Signal-Bots automatisch (oder weitergeleitete Signal-Nachrichten) "
+    "und handle sie mit virtuellem Geld – rückwirkend ab dem Moment des Signals.\n\n"
     "/status – Kontostand & offene Trades live\n"
     "/offen – offene Trades mit SL/TP\n"
     "/verlauf – letzte 10 Trades\n"
@@ -569,13 +594,77 @@ def process_signal_text(state: dict, text: str, msg_date: int, source: str):
         tg_send(owner, f"⏭ Signal {short(sig['symbol'])} {sig['side']} übersprungen: "
                        f"schon {age_min:.0f} Minuten alt")
         return
-    pos, reason = open_position(state, sig, source)
+    pos, reason = open_position(state, sig, source, int(msg_date * 1000))
     if pos:
         log(f"Eröffnet: {pos['symbol']} {pos['side']} @ {pos['entry']}")
         tg_send(owner, msg_opened(pos))
     else:
         log(f"Nicht eröffnet: {reason}")
         tg_send(owner, f"⏭ Signal {short(sig['symbol'])} {sig['side']} nicht gehandelt: {html.escape(reason)}")
+
+
+def _raw_json(path: str):
+    url = f"https://raw.githubusercontent.com/{SIGNAL_REPO}/{SIGNAL_BRANCH}/{path}"
+    r = requests.get(url, params={"t": int(time.time())}, timeout=15)
+    r.raise_for_status()
+    return r.json()
+
+
+def process_repo_signals(state: dict):
+    """Liest neue Signale aus open_trades.json + trade_history.json des Signal-Bots."""
+    if not SIGNAL_REPO:
+        return
+    signals = []
+    try:
+        signals += list(_raw_json("open_trades.json").values())
+    except Exception as e:
+        log(f"open_trades.json nicht lesbar: {e}")
+    try:
+        h = _raw_json("trade_history.json")
+        signals += h.get("entries", []) if isinstance(h, dict) else h
+    except Exception as e:
+        log(f"trade_history.json nicht lesbar: {e}")
+
+    seen = set(state["seen_signals"])
+    fresh = []
+    for s in signals:
+        try:
+            key = f"{s['symbol']}_{s['interval']}_{s['category']}_{s['candle_time']}"
+            if key in seen:
+                continue
+            seen.add(key)
+            state["seen_signals"].append(key)
+            t = datetime.fromisoformat(str(s["candle_time"]).replace("Z", "+00:00"))
+            age_min = (time.time() - t.timestamp()) / 60
+            if age_min > MAX_SIGNAL_AGE_MIN:
+                continue  # alte Einträge (z. B. beim ersten Start) still überspringen
+            fresh.append((t.timestamp(), s))
+        except (KeyError, ValueError, TypeError) as e:
+            log(f"Unlesbarer Signal-Eintrag übersprungen: {e}")
+
+    for ts, s in sorted(fresh, key=lambda x: x[0]):
+        sig = {
+            "timeframe": s["interval"].lower(),
+            "side": s["type"].upper(),
+            "category": CATEGORY_NAMES.get(s["category"], s["category"]),
+            "symbol": s["symbol"].upper(),
+            "entry": float(s["entry"]),
+            "sl": float(s["sl"]),
+            "tp": float(s["tp"]),
+        }
+        ok_buy = sig["side"] == "BUY" and sig["sl"] < sig["entry"] < sig["tp"]
+        ok_sell = sig["side"] == "SELL" and sig["tp"] < sig["entry"] < sig["sl"]
+        if not (ok_buy or ok_sell):
+            continue
+        pos, reason = open_position(state, sig, "Signal-Bot", int(ts * 1000))
+        if pos:
+            log(f"Eröffnet: {pos['symbol']} {pos['side']} @ {pos['entry']}")
+            tg_send(owner_id(state), msg_opened(pos))
+        else:
+            log(f"Nicht eröffnet: {reason}")
+            tg_send(owner_id(state), f"⏭ Signal {short(sig['symbol'])} {sig['side']} nicht gehandelt: {html.escape(reason)}")
+
+    state["seen_signals"] = state["seen_signals"][-1500:]
 
 
 def process_updates(state: dict):
@@ -629,6 +718,11 @@ def main():
         process_updates(state)
     except Exception as e:
         log(f"Telegram-Updates fehlgeschlagen: {e}")
+
+    try:
+        process_repo_signals(state)
+    except Exception as e:
+        log(f"Signale aus dem Repo fehlgeschlagen: {e}")
 
     for c in check_open_positions(state):
         log(f"Geschlossen: {c['symbol']} {c['reason']} {c['pnl']:+.2f}")
