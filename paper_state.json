@@ -1,5 +1,5 @@
 {
-  "balance": 9282.141852143472,
+  "balance": 9269.800672432018,
   "start_balance": 10000.0,
   "risk_percent": 1.0,
   "paused": false,
@@ -918,30 +918,7 @@
     "BTCUSDT_5m_MOMENTUM_2026-10-24 11:29:59.999000+00:00",
     "PAXGUSDT_5m_RETEST_2026-10-24 12:59:59.999000+00:00"
   ],
-  "open": [
-    {
-      "id": "9c7bc4",
-      "symbol": "PAXGUSDT",
-      "timeframe": "5m",
-      "category": "Re-Test",
-      "category_key": "RETEST",
-      "rsi": 62.210924763819314,
-      "side": "SELL",
-      "signal_entry": 4005.56,
-      "entry": 4005.56,
-      "sl": 4006.5414285714287,
-      "tp": 4004.0878571428566,
-      "qty": 23.289591919853194,
-      "notional": 93287.85781048716,
-      "risk": 22.857070927060096,
-      "fee_open": 46.643928905243584,
-      "opened_at": "2026-10-24T12:59:59Z",
-      "opened_ms": 1792846799999,
-      "checked_until_ms": 1792848000000,
-      "source": "Signal-Bot",
-      "capped": true
-    }
-  ],
+  "open": [],
   "closed": [
     {
       "id": "856cce",
@@ -1225,6 +1202,33 @@
       "r_multiple": -2.265168079143645,
       "closed_at": "2026-10-24T11:45:29Z",
       "balance_after": 9328.785781048715
+    },
+    {
+      "id": "9c7bc4",
+      "symbol": "PAXGUSDT",
+      "timeframe": "5m",
+      "category": "Re-Test",
+      "category_key": "RETEST",
+      "rsi": 62.210924763819314,
+      "side": "SELL",
+      "signal_entry": 4005.56,
+      "entry": 4005.56,
+      "sl": 4006.5414285714287,
+      "tp": 4004.0878571428566,
+      "qty": 23.289591919853194,
+      "notional": 93287.85781048716,
+      "risk": 22.857070927060096,
+      "fee_open": 46.643928905243584,
+      "opened_at": "2026-10-24T12:59:59Z",
+      "opened_ms": 1792846799999,
+      "source": "Signal-Bot",
+      "capped": true,
+      "exit": 4004.0878571428566,
+      "reason": "TP",
+      "pnl": -58.98510861669642,
+      "r_multiple": -2.580606622997567,
+      "closed_at": "2026-10-24T13:25:26Z",
+      "balance_after": 9269.800672432018
     }
   ],
   "created": "2026-10-23T08:40:40Z"
