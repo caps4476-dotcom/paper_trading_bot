@@ -1,5 +1,5 @@
 {
-  "balance": 9429.722214561218,
+  "balance": 9393.56411253982,
   "start_balance": 10000.0,
   "risk_percent": 1.0,
   "paused": false,
@@ -913,9 +913,33 @@
     "BTCUSDT_15m_MOMENTUM_2026-10-23 14:29:59.999000+00:00",
     "BTCUSDT_5m_MOMENTUM_2026-10-23 17:44:59.999000+00:00",
     "BTCUSDT_5m_MOMENTUM_2026-10-23 21:44:59.999000+00:00",
-    "BTCUSDT_5m_MOMENTUM_2026-10-24 03:54:59.999000+00:00"
+    "BTCUSDT_5m_MOMENTUM_2026-10-24 03:54:59.999000+00:00",
+    "BTCUSDT_5m_MOMENTUM_2026-10-24 07:59:59.999000+00:00"
   ],
-  "open": [],
+  "open": [
+    {
+      "id": "2f3590",
+      "symbol": "BTCUSDT",
+      "timeframe": "5m",
+      "category": "Momentum",
+      "category_key": "MOMENTUM",
+      "rsi": 41.80866034736956,
+      "side": "SELL",
+      "signal_entry": 80732.01,
+      "entry": 80732.01,
+      "sl": 80837.28107142856,
+      "tp": 80574.10339285716,
+      "qty": 0.8957562687067492,
+      "notional": 72316.20404279596,
+      "risk": 94.29722214561218,
+      "fee_open": 36.15810202139798,
+      "opened_at": "2026-10-24T07:59:59Z",
+      "opened_ms": 1792828799999,
+      "checked_until_ms": 1792829400000,
+      "source": "Signal-Bot",
+      "capped": false
+    }
+  ],
   "closed": [
     {
       "id": "856cce",
