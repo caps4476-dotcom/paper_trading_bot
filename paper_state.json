@@ -1,5 +1,5 @@
 {
-  "balance": 8482.988799422634,
+  "balance": 8372.268587754905,
   "start_balance": 10000.0,
   "risk_percent": 1.0,
   "paused": false,
@@ -946,31 +946,9 @@
       "fee_open": 28.379461969970137,
       "opened_at": "2026-10-25T05:59:59Z",
       "opened_ms": 1792907999999,
-      "checked_until_ms": 1792915200000,
+      "checked_until_ms": 1792915500000,
       "source": "Signal-Bot",
       "capped": false
-    },
-    {
-      "id": "200453",
-      "symbol": "BTCUSDT",
-      "timeframe": "5m",
-      "category": "Momentum",
-      "category_key": "MOMENTUM",
-      "rsi": 55.932532660391075,
-      "side": "BUY",
-      "signal_entry": 80699.42,
-      "entry": 80699.42,
-      "sl": 80634.935,
-      "tp": 80796.14749999999,
-      "qty": 1.0564656950250502,
-      "notional": 85256.16883841844,
-      "risk": 68.12619034369098,
-      "fee_open": 42.628084419209216,
-      "opened_at": "2026-10-25T07:49:59Z",
-      "opened_ms": 1792914599999,
-      "checked_until_ms": 1792915200000,
-      "source": "Signal-Bot",
-      "capped": true
     }
   ],
   "closed": [
@@ -1472,6 +1450,33 @@
       "r_multiple": -6.9555828025482995,
       "closed_at": "2026-10-25T05:25:24Z",
       "balance_after": 8553.996345811813
+    },
+    {
+      "id": "200453",
+      "symbol": "BTCUSDT",
+      "timeframe": "5m",
+      "category": "Momentum",
+      "category_key": "MOMENTUM",
+      "rsi": 55.932532660391075,
+      "side": "BUY",
+      "signal_entry": 80699.42,
+      "entry": 80699.42,
+      "sl": 80634.935,
+      "tp": 80796.14749999999,
+      "qty": 1.0564656950250502,
+      "notional": 85256.16883841844,
+      "risk": 68.12619034369098,
+      "fee_open": 42.628084419209216,
+      "opened_at": "2026-10-25T07:49:59Z",
+      "opened_ms": 1792914599999,
+      "source": "Signal-Bot",
+      "capped": true,
+      "exit": 80634.935,
+      "reason": "SL",
+      "pnl": -153.34829608693758,
+      "r_multiple": -2.250944832131492,
+      "closed_at": "2026-10-25T08:05:25Z",
+      "balance_after": 8372.268587754905
     }
   ],
   "created": "2026-10-23T08:40:40Z"
