@@ -1,5 +1,5 @@
 {
-  "balance": 8243.813459777877,
+  "balance": 8352.931753965746,
   "start_balance": 10000.0,
   "risk_percent": 1.0,
   "paused": false,
@@ -931,30 +931,7 @@
     "PAXGUSDT_15m_RETEST_2026-10-25 14:59:59.999000+00:00",
     "BTCUSDT_5m_MOMENTUM_2026-10-25 23:04:59.999000+00:00"
   ],
-  "open": [
-    {
-      "id": "c2c3d5",
-      "symbol": "BTCUSDT",
-      "timeframe": "5m",
-      "category": "Momentum",
-      "category_key": "MOMENTUM",
-      "rsi": 44.12959665092226,
-      "side": "SELL",
-      "signal_entry": 80387.7,
-      "entry": 80387.7,
-      "sl": 80611.63714285713,
-      "tp": 80051.7942857143,
-      "qty": 0.3687926241187096,
-      "notional": 29646.390829867592,
-      "risk": 82.58636655192811,
-      "fee_open": 14.823195414933798,
-      "opened_at": "2026-10-25T23:04:59Z",
-      "opened_ms": 1792969499999,
-      "checked_until_ms": 1792970700000,
-      "source": "Signal-Bot",
-      "capped": false
-    }
-  ],
+  "open": [],
   "closed": [
     {
       "id": "856cce",
@@ -1589,6 +1566,33 @@
       "r_multiple": -5.638842431761383,
       "closed_at": "2026-10-25T15:05:25Z",
       "balance_after": 8258.636655192811
+    },
+    {
+      "id": "c2c3d5",
+      "symbol": "BTCUSDT",
+      "timeframe": "5m",
+      "category": "Momentum",
+      "category_key": "MOMENTUM",
+      "rsi": 44.12959665092226,
+      "side": "SELL",
+      "signal_entry": 80387.7,
+      "entry": 80387.7,
+      "sl": 80611.63714285713,
+      "tp": 80051.7942857143,
+      "qty": 0.3687926241187096,
+      "notional": 29646.390829867592,
+      "risk": 82.58636655192811,
+      "fee_open": 14.823195414933798,
+      "opened_at": "2026-10-25T23:04:59Z",
+      "opened_ms": 1792969499999,
+      "source": "Signal-Bot",
+      "capped": false,
+      "exit": 80051.7942857143,
+      "reason": "TP",
+      "pnl": 94.29509877293583,
+      "r_multiple": 1.1417756066752929,
+      "closed_at": "2026-10-25T23:30:42Z",
+      "balance_after": 8352.931753965746
     }
   ],
   "created": "2026-10-23T08:40:40Z"
