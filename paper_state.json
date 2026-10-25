@@ -1,9 +1,9 @@
 {
-  "balance": 8258.636655192811,
+  "balance": 8243.813459777877,
   "start_balance": 10000.0,
   "risk_percent": 1.0,
   "paused": false,
-  "telegram_offset": 644349099,
+  "telegram_offset": 644349100,
   "seen_channels": [
     "-1003990770236"
   ],
@@ -928,9 +928,33 @@
     "BTCUSDT_5m_MOMENTUM_2026-10-25 07:49:59.999000+00:00",
     "BTCUSDT_5m_MOMENTUM_2026-10-25 08:19:59.999000+00:00",
     "EURUSDT_5m_RETEST_2026-10-25 11:54:59.999000+00:00",
-    "PAXGUSDT_15m_RETEST_2026-10-25 14:59:59.999000+00:00"
+    "PAXGUSDT_15m_RETEST_2026-10-25 14:59:59.999000+00:00",
+    "BTCUSDT_5m_MOMENTUM_2026-10-25 23:04:59.999000+00:00"
   ],
-  "open": [],
+  "open": [
+    {
+      "id": "c2c3d5",
+      "symbol": "BTCUSDT",
+      "timeframe": "5m",
+      "category": "Momentum",
+      "category_key": "MOMENTUM",
+      "rsi": 44.12959665092226,
+      "side": "SELL",
+      "signal_entry": 80387.7,
+      "entry": 80387.7,
+      "sl": 80611.63714285713,
+      "tp": 80051.7942857143,
+      "qty": 0.3687926241187096,
+      "notional": 29646.390829867592,
+      "risk": 82.58636655192811,
+      "fee_open": 14.823195414933798,
+      "opened_at": "2026-10-25T23:04:59Z",
+      "opened_ms": 1792969499999,
+      "checked_until_ms": 1792969800000,
+      "source": "Signal-Bot",
+      "capped": false
+    }
+  ],
   "closed": [
     {
       "id": "856cce",
