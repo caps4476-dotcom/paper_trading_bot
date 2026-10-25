@@ -943,7 +943,7 @@
       "fee_open": 43.92227849961915,
       "opened_at": "2026-10-25T04:49:59Z",
       "opened_ms": 1792903799999,
-      "checked_until_ms": 1792905000000,
+      "checked_until_ms": 1792905300000,
       "source": "Signal-Bot",
       "capped": true
     }
