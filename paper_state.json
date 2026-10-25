@@ -1,9 +1,9 @@
 {
-  "balance": 8360.272661848805,
+  "balance": 8258.636655192811,
   "start_balance": 10000.0,
   "risk_percent": 1.0,
   "paused": false,
-  "telegram_offset": 644349097,
+  "telegram_offset": 644349098,
   "seen_channels": [
     "-1003990770236"
   ],
@@ -927,7 +927,8 @@
     "BTCUSDT_15m_MOMENTUM_2026-10-25 05:59:59.999000+00:00",
     "BTCUSDT_5m_MOMENTUM_2026-10-25 07:49:59.999000+00:00",
     "BTCUSDT_5m_MOMENTUM_2026-10-25 08:19:59.999000+00:00",
-    "EURUSDT_5m_RETEST_2026-10-25 11:54:59.999000+00:00"
+    "EURUSDT_5m_RETEST_2026-10-25 11:54:59.999000+00:00",
+    "PAXGUSDT_15m_RETEST_2026-10-25 14:59:59.999000+00:00"
   ],
   "open": [],
   "closed": [
@@ -1537,6 +1538,33 @@
       "r_multiple": -5.983500000001778,
       "closed_at": "2026-10-25T12:40:34Z",
       "balance_after": 8360.272661848805
+    },
+    {
+      "id": "42950f",
+      "symbol": "PAXGUSDT",
+      "timeframe": "15m",
+      "category": "Re-Test",
+      "category_key": "RETEST",
+      "rsi": 69.17560795736063,
+      "side": "SELL",
+      "signal_entry": 4005.54,
+      "entry": 4005.54,
+      "sl": 4006.4035714285715,
+      "tp": 4004.244642857143,
+      "qty": 20.87177424728952,
+      "notional": 83602.72661848806,
+      "risk": 18.024267903553735,
+      "fee_open": 41.80136330924403,
+      "opened_at": "2026-10-25T14:59:59Z",
+      "opened_ms": 1792940399999,
+      "source": "Signal-Bot",
+      "capped": true,
+      "exit": 4006.4035714285715,
+      "reason": "SL",
+      "pnl": -101.63600665599358,
+      "r_multiple": -5.638842431761383,
+      "closed_at": "2026-10-25T15:05:25Z",
+      "balance_after": 8258.636655192811
     }
   ],
   "created": "2026-10-23T08:40:40Z"
