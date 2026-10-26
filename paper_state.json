@@ -1,9 +1,9 @@
 {
-  "balance": 7885.044879722043,
+  "balance": 7864.076600484607,
   "start_balance": 10000.0,
   "risk_percent": 1.0,
   "paused": false,
-  "telegram_offset": 644349119,
+  "telegram_offset": 644349121,
   "seen_channels": [
     "-1003990770236"
   ],
@@ -937,9 +937,56 @@
     "BTCUSDT_5m_MOMENTUM_2026-10-26 14:49:59.999000+00:00",
     "BTCUSDT_15m_MOMENTUM_2026-10-26 15:29:59.999000+00:00",
     "BTCUSDT_5m_MOMENTUM_2026-10-26 16:24:59.999000+00:00",
-    "BTCUSDT_15m_MOMENTUM_2026-10-26 16:44:59.999000+00:00"
+    "BTCUSDT_15m_MOMENTUM_2026-10-26 16:44:59.999000+00:00",
+    "BTCUSDT_15m_MOMENTUM_2026-10-26 17:14:59.999000+00:00",
+    "BTCUSDT_5m_MOMENTUM_2026-10-26 17:14:59.999000+00:00"
   ],
-  "open": [],
+  "open": [
+    {
+      "id": "684e4f",
+      "symbol": "BTCUSDT",
+      "timeframe": "15m",
+      "category": "Momentum",
+      "category_key": "MOMENTUM",
+      "rsi": 55.9332926730292,
+      "side": "BUY",
+      "signal_entry": 80498.0,
+      "entry": 80498.0,
+      "sl": 79971.22142857143,
+      "tp": 81288.16785714286,
+      "qty": 0.14968423750302878,
+      "notional": 12049.28175051881,
+      "risk": 78.85044879722044,
+      "fee_open": 6.024640875259405,
+      "opened_at": "2026-10-26T17:14:59Z",
+      "opened_ms": 1793034899999,
+      "checked_until_ms": 1793035200000,
+      "source": "Signal-Bot",
+      "capped": false
+    },
+    {
+      "id": "ccda77",
+      "symbol": "BTCUSDT",
+      "timeframe": "5m",
+      "category": "Momentum",
+      "category_key": "MOMENTUM",
+      "rsi": 60.31549672458215,
+      "side": "BUY",
+      "signal_entry": 80498.0,
+      "entry": 80498.0,
+      "sl": 80285.7875,
+      "tp": 80816.31874999999,
+      "qty": 0.37127974265639396,
+      "notional": 29887.2767243544,
+      "risk": 78.79020238846785,
+      "fee_open": 14.9436383621772,
+      "opened_at": "2026-10-26T17:14:59Z",
+      "opened_ms": 1793034899999,
+      "checked_until_ms": 1793035200000,
+      "source": "Signal-Bot",
+      "capped": false
+    }
+  ],
   "closed": [
     {
       "id": "856cce",
