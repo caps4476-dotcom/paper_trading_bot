@@ -1,5 +1,5 @@
 {
-  "balance": 7515.95170179794,
+  "balance": 7612.517535919436,
   "start_balance": 10000.0,
   "risk_percent": 1.0,
   "paused": false,
@@ -949,28 +949,6 @@
   ],
   "open": [
     {
-      "id": "989f83",
-      "symbol": "BTCUSDT",
-      "timeframe": "5m",
-      "category": "Momentum",
-      "category_key": "MOMENTUM",
-      "rsi": 44.62683677184037,
-      "side": "SELL",
-      "signal_entry": 80083.74,
-      "entry": 80083.74,
-      "sl": 80265.09107142859,
-      "tp": 79811.71339285714,
-      "qty": 0.41601551750876664,
-      "notional": 33316.07854013752,
-      "risk": 75.44485983113015,
-      "fee_open": 16.65803927006876,
-      "opened_at": "2026-10-27T01:54:59Z",
-      "opened_ms": 1793066099999,
-      "checked_until_ms": 1793069700000,
-      "source": "Signal-Bot",
-      "capped": false
-    },
-    {
       "id": "b6d215",
       "symbol": "BTCUSDT",
       "timeframe": "15m",
@@ -988,7 +966,7 @@
       "fee_open": 11.876242045007064,
       "opened_at": "2026-10-27T02:44:59Z",
       "opened_ms": 1793069099999,
-      "checked_until_ms": 1793069700000,
+      "checked_until_ms": 1793070000000,
       "source": "Signal-Bot",
       "capped": false
     }
@@ -2032,6 +2010,33 @@
       "r_multiple": 0.8175936427369218,
       "closed_at": "2026-10-27T00:40:33Z",
       "balance_after": 7544.485983113015
+    },
+    {
+      "id": "989f83",
+      "symbol": "BTCUSDT",
+      "timeframe": "5m",
+      "category": "Momentum",
+      "category_key": "MOMENTUM",
+      "rsi": 44.62683677184037,
+      "side": "SELL",
+      "signal_entry": 80083.74,
+      "entry": 80083.74,
+      "sl": 80265.09107142859,
+      "tp": 79811.71339285714,
+      "qty": 0.41601551750876664,
+      "notional": 33316.07854013752,
+      "risk": 75.44485983113015,
+      "fee_open": 16.65803927006876,
+      "opened_at": "2026-10-27T01:54:59Z",
+      "opened_ms": 1793066099999,
+      "source": "Signal-Bot",
+      "capped": false,
+      "exit": 79811.71339285714,
+      "reason": "TP",
+      "pnl": 79.90779485142802,
+      "r_multiple": 1.0591549249383903,
+      "closed_at": "2026-10-27T03:00:56Z",
+      "balance_after": 7612.517535919436
     }
   ],
   "created": "2026-10-23T08:40:40Z"
