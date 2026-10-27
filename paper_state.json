@@ -1,5 +1,5 @@
 {
-  "balance": 7578.486478180774,
+  "balance": 7678.57836176645,
   "start_balance": 10000.0,
   "risk_percent": 1.0,
   "paused": false,
@@ -949,30 +949,7 @@
     "BTCUSDT_5m_MOMENTUM_2026-10-27 06:29:59.999000+00:00",
     "BTCUSDT_5m_MOMENTUM_2026-10-27 14:34:59.999000+00:00"
   ],
-  "open": [
-    {
-      "id": "dd233e",
-      "symbol": "BTCUSDT",
-      "timeframe": "5m",
-      "category": "Momentum",
-      "category_key": "MOMENTUM",
-      "rsi": 60.133170531847995,
-      "side": "BUY",
-      "signal_entry": 80334.5,
-      "entry": 80334.5,
-      "sl": 80112.46142857143,
-      "tp": 80667.55785714285,
-      "qty": 0.3419325263445119,
-      "notional": 27468.97853762319,
-      "risk": 75.92220967449585,
-      "fee_open": 13.734489268811593,
-      "opened_at": "2026-10-27T14:34:59Z",
-      "opened_ms": 1793111699999,
-      "checked_until_ms": 1793114400000,
-      "source": "Signal-Bot",
-      "capped": false
-    }
-  ],
+  "open": [],
   "closed": [
     {
       "id": "856cce",
@@ -2093,6 +2070,33 @@
       "r_multiple": -1.594665676883795,
       "closed_at": "2026-10-27T07:50:32Z",
       "balance_after": 7592.220967449585
+    },
+    {
+      "id": "dd233e",
+      "symbol": "BTCUSDT",
+      "timeframe": "5m",
+      "category": "Momentum",
+      "category_key": "MOMENTUM",
+      "rsi": 60.133170531847995,
+      "side": "BUY",
+      "signal_entry": 80334.5,
+      "entry": 80334.5,
+      "sl": 80112.46142857143,
+      "tp": 80667.55785714285,
+      "qty": 0.3419325263445119,
+      "notional": 27468.97853762319,
+      "risk": 75.92220967449585,
+      "fee_open": 13.734489268811593,
+      "opened_at": "2026-10-27T14:34:59Z",
+      "opened_ms": 1793111699999,
+      "source": "Signal-Bot",
+      "capped": false,
+      "exit": 80667.55785714285,
+      "reason": "TP",
+      "pnl": 86.35739431686471,
+      "r_multiple": 1.1374457446260855,
+      "closed_at": "2026-10-27T15:25:29Z",
+      "balance_after": 7678.57836176645
     }
   ],
   "created": "2026-10-23T08:40:40Z"
