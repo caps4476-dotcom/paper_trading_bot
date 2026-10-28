@@ -1,5 +1,5 @@
 {
-  "balance": 7275.095204365555,
+  "balance": 7178.412387306802,
   "start_balance": 10000.0,
   "risk_percent": 1.0,
   "paused": false,
@@ -960,28 +960,6 @@
   ],
   "open": [
     {
-      "id": "b90003",
-      "symbol": "EURUSDT",
-      "timeframe": "15m",
-      "category": "Re-Test",
-      "category_key": "RETEST",
-      "rsi": 62.884421425800944,
-      "side": "SELL",
-      "signal_entry": 1.1151,
-      "entry": 1.1151,
-      "sl": 1.115967857142857,
-      "tp": 1.1137982142857143,
-      "qty": 67807.56915768237,
-      "notional": 75612.22036773161,
-      "risk": 58.84728323327055,
-      "fee_open": 37.806110183865805,
-      "opened_at": "2026-10-28T12:29:59Z",
-      "opened_ms": 1793190599999,
-      "checked_until_ms": 1793204700000,
-      "source": "Signal-Bot",
-      "capped": true
-    },
-    {
       "id": "1df860",
       "symbol": "PAXGUSDT",
       "timeframe": "15m",
@@ -999,7 +977,7 @@
       "fee_open": 22.456552606538885,
       "opened_at": "2026-10-28T14:59:59Z",
       "opened_ms": 1793199599999,
-      "checked_until_ms": 1793204700000,
+      "checked_until_ms": 1793205000000,
       "source": "Signal-Bot",
       "capped": false
     }
@@ -2340,6 +2318,33 @@
       "r_multiple": -1.6196977011494167,
       "closed_at": "2026-10-28T16:05:30Z",
       "balance_after": 7275.095204365555
+    },
+    {
+      "id": "b90003",
+      "symbol": "EURUSDT",
+      "timeframe": "15m",
+      "category": "Re-Test",
+      "category_key": "RETEST",
+      "rsi": 62.884421425800944,
+      "side": "SELL",
+      "signal_entry": 1.1151,
+      "entry": 1.1151,
+      "sl": 1.115967857142857,
+      "tp": 1.1137982142857143,
+      "qty": 67807.56915768237,
+      "notional": 75612.22036773161,
+      "risk": 58.84728323327055,
+      "fee_open": 37.806110183865805,
+      "opened_at": "2026-10-28T12:29:59Z",
+      "opened_ms": 1793190599999,
+      "source": "Signal-Bot",
+      "capped": true,
+      "exit": 1.115967857142857,
+      "reason": "SL",
+      "pnl": -134.48892724261881,
+      "r_multiple": -2.285388888888972,
+      "closed_at": "2026-10-28T16:30:49Z",
+      "balance_after": 7178.412387306802
     }
   ],
   "created": "2026-10-23T08:40:40Z"
