@@ -1,5 +1,5 @@
 {
-  "balance": 7637.736656104098,
+  "balance": 7726.907142690838,
   "start_balance": 10000.0,
   "risk_percent": 1.0,
   "paused": false,
@@ -953,28 +953,6 @@
   ],
   "open": [
     {
-      "id": "591775",
-      "symbol": "BTCUSDT",
-      "timeframe": "5m",
-      "category": "Momentum",
-      "category_key": "MOMENTUM",
-      "rsi": 58.47184720506095,
-      "side": "BUY",
-      "signal_entry": 80918.0,
-      "entry": 80918.0,
-      "sl": 80798.285,
-      "tp": 81097.5725,
-      "qty": 0.6414048667056488,
-      "notional": 51901.199004087684,
-      "risk": 76.7857836176645,
-      "fee_open": 25.950599502043843,
-      "opened_at": "2026-10-28T01:39:59Z",
-      "opened_ms": 1793151599999,
-      "checked_until_ms": 1793153700000,
-      "source": "Signal-Bot",
-      "capped": false
-    },
-    {
       "id": "6d3946",
       "symbol": "BTCUSDT",
       "timeframe": "15m",
@@ -992,7 +970,7 @@
       "fee_open": 14.891106160308725,
       "opened_at": "2026-10-28T01:44:59Z",
       "opened_ms": 1793151899999,
-      "checked_until_ms": 1793153700000,
+      "checked_until_ms": 1793154000000,
       "source": "Signal-Bot",
       "capped": false
     }
@@ -2144,6 +2122,33 @@
       "r_multiple": 1.1374457446260855,
       "closed_at": "2026-10-27T15:25:29Z",
       "balance_after": 7678.57836176645
+    },
+    {
+      "id": "591775",
+      "symbol": "BTCUSDT",
+      "timeframe": "5m",
+      "category": "Momentum",
+      "category_key": "MOMENTUM",
+      "rsi": 58.47184720506095,
+      "side": "BUY",
+      "signal_entry": 80918.0,
+      "entry": 80918.0,
+      "sl": 80798.285,
+      "tp": 81097.5725,
+      "qty": 0.6414048667056488,
+      "notional": 51901.199004087684,
+      "risk": 76.7857836176645,
+      "fee_open": 25.950599502043843,
+      "opened_at": "2026-10-28T01:39:59Z",
+      "opened_ms": 1793151599999,
+      "source": "Signal-Bot",
+      "capped": false,
+      "exit": 81097.5725,
+      "reason": "TP",
+      "pnl": 63.21988708469581,
+      "r_multiple": 0.823328018627554,
+      "closed_at": "2026-10-28T02:20:32Z",
+      "balance_after": 7726.907142690838
     }
   ],
   "created": "2026-10-23T08:40:40Z"
