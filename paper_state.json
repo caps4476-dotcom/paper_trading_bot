@@ -984,7 +984,7 @@
       "fee_open": 14.399410029669726,
       "opened_at": "2026-10-28T20:59:59Z",
       "opened_ms": 1793221199999,
-      "checked_until_ms": 1793227800000,
+      "checked_until_ms": 1793228100000,
       "source": "Signal-Bot",
       "capped": false
     },
@@ -1006,7 +1006,7 @@
       "fee_open": 20.34855863213695,
       "opened_at": "2026-10-28T22:34:59Z",
       "opened_ms": 1793226899999,
-      "checked_until_ms": 1793227800000,
+      "checked_until_ms": 1793228100000,
       "source": "Signal-Bot",
       "capped": false
     },
@@ -1028,7 +1028,7 @@
       "fee_open": 35.19758381253942,
       "opened_at": "2026-10-28T22:39:59Z",
       "opened_ms": 1793227199999,
-      "checked_until_ms": 1793227800000,
+      "checked_until_ms": 1793228100000,
       "source": "Signal-Bot",
       "capped": true
     }
