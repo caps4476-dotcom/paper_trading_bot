@@ -1,9 +1,9 @@
 {
-  "balance": 7549.557904990535,
+  "balance": 7461.381121207719,
   "start_balance": 10000.0,
   "risk_percent": 1.0,
   "paused": false,
-  "telegram_offset": 644349146,
+  "telegram_offset": 644349147,
   "seen_channels": [
     "-1003990770236"
   ],
@@ -973,31 +973,9 @@
       "fee_open": 14.891106160308725,
       "opened_at": "2026-10-28T01:44:59Z",
       "opened_ms": 1793151899999,
-      "checked_until_ms": 1793174100000,
+      "checked_until_ms": 1793174400000,
       "source": "Signal-Bot",
       "capped": false
-    },
-    {
-      "id": "7d2679",
-      "symbol": "PAXGUSDT",
-      "timeframe": "5m",
-      "category": "Re-Test",
-      "category_key": "RETEST",
-      "rsi": 62.12669370519616,
-      "side": "SELL",
-      "signal_entry": 4044.62,
-      "entry": 4044.62,
-      "sl": 4047.285714285714,
-      "tp": 4040.6214285714286,
-      "qty": 18.803597400792185,
-      "notional": 76053.40611919209,
-      "risk": 50.12501821411257,
-      "fee_open": 38.026703059596045,
-      "opened_at": "2026-10-28T07:39:59Z",
-      "opened_ms": 1793173199999,
-      "checked_until_ms": 1793174100000,
-      "source": "Signal-Bot",
-      "capped": true
     }
   ],
   "closed": [
@@ -2228,6 +2206,33 @@
       "r_multiple": -0.45963407374728066,
       "closed_at": "2026-10-28T07:55:25Z",
       "balance_after": 7549.557904990535
+    },
+    {
+      "id": "7d2679",
+      "symbol": "PAXGUSDT",
+      "timeframe": "5m",
+      "category": "Re-Test",
+      "category_key": "RETEST",
+      "rsi": 62.12669370519616,
+      "side": "SELL",
+      "signal_entry": 4044.62,
+      "entry": 4044.62,
+      "sl": 4047.285714285714,
+      "tp": 4040.6214285714286,
+      "qty": 18.803597400792185,
+      "notional": 76053.40611919209,
+      "risk": 50.12501821411257,
+      "fee_open": 38.026703059596045,
+      "opened_at": "2026-10-28T07:39:59Z",
+      "opened_ms": 1793173199999,
+      "source": "Signal-Bot",
+      "capped": true,
+      "exit": 4047.285714285714,
+      "reason": "SL",
+      "pnl": -126.20348684241172,
+      "r_multiple": -2.517774383708442,
+      "closed_at": "2026-10-28T08:00:52Z",
+      "balance_after": 7461.381121207719
     }
   ],
   "created": "2026-10-23T08:40:40Z"
