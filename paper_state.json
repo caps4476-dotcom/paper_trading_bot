@@ -1,9 +1,9 @@
 {
-  "balance": 7004.319178695345,
+  "balance": 6913.407266178413,
   "start_balance": 10000.0,
   "risk_percent": 1.0,
   "paused": false,
-  "telegram_offset": 644349168,
+  "telegram_offset": 644349169,
   "seen_channels": [
     "-1003990770236"
   ],
@@ -984,29 +984,7 @@
       "fee_open": 14.399410029669726,
       "opened_at": "2026-10-28T20:59:59Z",
       "opened_ms": 1793221199999,
-      "checked_until_ms": 1793228400000,
-      "source": "Signal-Bot",
-      "capped": false
-    },
-    {
-      "id": "5aa613",
-      "symbol": "BTCUSDT",
-      "timeframe": "5m",
-      "category": "Momentum",
-      "category_key": "MOMENTUM",
-      "rsi": 58.40895328800963,
-      "side": "BUY",
-      "signal_entry": 81404.64,
-      "entry": 81404.64,
-      "sl": 81263.42464285715,
-      "tp": 81616.46303571427,
-      "qty": 0.49993608797083183,
-      "notional": 40697.1172642739,
-      "risk": 70.5986532114002,
-      "fee_open": 20.34855863213695,
-      "opened_at": "2026-10-28T22:34:59Z",
-      "opened_ms": 1793226899999,
-      "checked_until_ms": 1793228400000,
+      "checked_until_ms": 1793228700000,
       "source": "Signal-Bot",
       "capped": false
     },
@@ -1028,7 +1006,7 @@
       "fee_open": 35.19758381253942,
       "opened_at": "2026-10-28T22:39:59Z",
       "opened_ms": 1793227199999,
-      "checked_until_ms": 1793228400000,
+      "checked_until_ms": 1793228700000,
       "source": "Signal-Bot",
       "capped": true
     }
@@ -2531,6 +2509,33 @@
       "r_multiple": 1.2556069901186429,
       "closed_at": "2026-10-28T20:05:32Z",
       "balance_after": 7074.26473116969
+    },
+    {
+      "id": "5aa613",
+      "symbol": "BTCUSDT",
+      "timeframe": "5m",
+      "category": "Momentum",
+      "category_key": "MOMENTUM",
+      "rsi": 58.40895328800963,
+      "side": "BUY",
+      "signal_entry": 81404.64,
+      "entry": 81404.64,
+      "sl": 81263.42464285715,
+      "tp": 81616.46303571427,
+      "qty": 0.49993608797083183,
+      "notional": 40697.1172642739,
+      "risk": 70.5986532114002,
+      "fee_open": 20.34855863213695,
+      "opened_at": "2026-10-28T22:34:59Z",
+      "opened_ms": 1793226899999,
+      "source": "Signal-Bot",
+      "capped": false,
+      "exit": 81263.42464285715,
+      "reason": "SL",
+      "pnl": -111.26047114906841,
+      "r_multiple": -1.5759574168633315,
+      "closed_at": "2026-10-28T23:05:26Z",
+      "balance_after": 6913.407266178413
     }
   ],
   "created": "2026-10-23T08:40:40Z"
