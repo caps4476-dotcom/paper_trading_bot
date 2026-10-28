@@ -1,9 +1,9 @@
 {
-  "balance": 7185.825853684313,
+  "balance": 7149.896724415891,
   "start_balance": 10000.0,
   "risk_percent": 1.0,
   "paused": false,
-  "telegram_offset": 644349160,
+  "telegram_offset": 644349161,
   "seen_channels": [
     "-1003990770236"
   ],
@@ -958,7 +958,8 @@
     "PAXGUSDT_15m_RETEST_2026-10-28 14:44:59.999000+00:00",
     "PAXGUSDT_15m_RETEST_2026-10-28 14:59:59.999000+00:00",
     "EURUSDT_15m_RETEST_2026-10-28 16:44:59.999000+00:00",
-    "EURUSDT_15m_RETEST_2026-10-28 17:14:59.999000+00:00"
+    "EURUSDT_15m_RETEST_2026-10-28 17:14:59.999000+00:00",
+    "EURUSDT_5m_RETEST_2026-10-28 17:59:59.999000+00:00"
   ],
   "open": [
     {
@@ -979,9 +980,31 @@
       "fee_open": 22.456552606538885,
       "opened_at": "2026-10-28T14:59:59Z",
       "opened_ms": 1793199599999,
-      "checked_until_ms": 1793210400000,
+      "checked_until_ms": 1793210700000,
       "source": "Signal-Bot",
       "capped": false
+    },
+    {
+      "id": "43013c",
+      "symbol": "EURUSDT",
+      "timeframe": "5m",
+      "category": "Re-Test",
+      "category_key": "RETEST",
+      "rsi": 34.948362798792374,
+      "side": "BUY",
+      "signal_entry": 1.1149,
+      "entry": 1.1149,
+      "sl": 1.1144178571428571,
+      "tp": 1.1156232142857143,
+      "qty": 64452.64914955882,
+      "notional": 71858.25853684313,
+      "risk": 31.075384411395607,
+      "fee_open": 35.92912926842157,
+      "opened_at": "2026-10-28T17:59:59Z",
+      "opened_ms": 1793210399999,
+      "checked_until_ms": 1793210700000,
+      "source": "Signal-Bot",
+      "capped": true
     }
   ],
   "closed": [
