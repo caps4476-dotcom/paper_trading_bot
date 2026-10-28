@@ -1,5 +1,5 @@
 {
-  "balance": 7053.530207092033,
+  "balance": 6986.541231104422,
   "start_balance": 10000.0,
   "risk_percent": 1.0,
   "paused": false,
@@ -961,30 +961,7 @@
     "EURUSDT_15m_RETEST_2026-10-28 17:14:59.999000+00:00",
     "EURUSDT_5m_RETEST_2026-10-28 17:59:59.999000+00:00"
   ],
-  "open": [
-    {
-      "id": "43013c",
-      "symbol": "EURUSDT",
-      "timeframe": "5m",
-      "category": "Re-Test",
-      "category_key": "RETEST",
-      "rsi": 34.948362798792374,
-      "side": "BUY",
-      "signal_entry": 1.1149,
-      "entry": 1.1149,
-      "sl": 1.1144178571428571,
-      "tp": 1.1156232142857143,
-      "qty": 64452.64914955882,
-      "notional": 71858.25853684313,
-      "risk": 31.075384411395607,
-      "fee_open": 35.92912926842157,
-      "opened_at": "2026-10-28T17:59:59Z",
-      "opened_ms": 1793210399999,
-      "checked_until_ms": 1793211300000,
-      "source": "Signal-Bot",
-      "capped": true
-    }
-  ],
+  "open": [],
   "closed": [
     {
       "id": "856cce",
@@ -2429,6 +2406,33 @@
       "r_multiple": -1.6068693693693825,
       "closed_at": "2026-10-28T18:10:44Z",
       "balance_after": 7053.530207092033
+    },
+    {
+      "id": "43013c",
+      "symbol": "EURUSDT",
+      "timeframe": "5m",
+      "category": "Re-Test",
+      "category_key": "RETEST",
+      "rsi": 34.948362798792374,
+      "side": "BUY",
+      "signal_entry": 1.1149,
+      "entry": 1.1149,
+      "sl": 1.1144178571428571,
+      "tp": 1.1156232142857143,
+      "qty": 64452.64914955882,
+      "notional": 71858.25853684313,
+      "risk": 31.075384411395607,
+      "fee_open": 35.92912926842157,
+      "opened_at": "2026-10-28T17:59:59Z",
+      "opened_ms": 1793210399999,
+      "source": "Signal-Bot",
+      "capped": true,
+      "exit": 1.1144178571428571,
+      "reason": "SL",
+      "pnl": -102.91810525603304,
+      "r_multiple": -3.311885185185098,
+      "closed_at": "2026-10-28T18:20:36Z",
+      "balance_after": 6986.541231104422
     }
   ],
   "created": "2026-10-23T08:40:40Z"
