@@ -1,9 +1,9 @@
 {
-  "balance": 6978.030121433389,
+  "balance": 7074.26473116969,
   "start_balance": 10000.0,
   "risk_percent": 1.0,
   "paused": false,
-  "telegram_offset": 644349164,
+  "telegram_offset": 644349165,
   "seen_channels": [
     "-1003990770236"
   ],
@@ -962,30 +962,7 @@
     "EURUSDT_5m_RETEST_2026-10-28 17:59:59.999000+00:00",
     "BTCUSDT_15m_MOMENTUM_2026-10-28 18:44:59.999000+00:00"
   ],
-  "open": [
-    {
-      "id": "dcfa9e",
-      "symbol": "BTCUSDT",
-      "timeframe": "15m",
-      "category": "Momentum",
-      "category_key": "MOMENTUM",
-      "rsi": 65.08436093597447,
-      "side": "BUY",
-      "signal_entry": 81182.46,
-      "entry": 81182.46,
-      "sl": 80849.2575,
-      "tp": 81682.26375000001,
-      "qty": 0.20967853575841822,
-      "notional": 17022.219342066357,
-      "risk": 69.86541231104422,
-      "fee_open": 8.511109671033179,
-      "opened_at": "2026-10-28T18:44:59Z",
-      "opened_ms": 1793213099999,
-      "checked_until_ms": 1793217600000,
-      "source": "Signal-Bot",
-      "capped": false
-    }
-  ],
+  "open": [],
   "closed": [
     {
       "id": "856cce",
@@ -2457,6 +2434,33 @@
       "r_multiple": -3.311885185185098,
       "closed_at": "2026-10-28T18:20:36Z",
       "balance_after": 6986.541231104422
+    },
+    {
+      "id": "dcfa9e",
+      "symbol": "BTCUSDT",
+      "timeframe": "15m",
+      "category": "Momentum",
+      "category_key": "MOMENTUM",
+      "rsi": 65.08436093597447,
+      "side": "BUY",
+      "signal_entry": 81182.46,
+      "entry": 81182.46,
+      "sl": 80849.2575,
+      "tp": 81682.26375000001,
+      "qty": 0.20967853575841822,
+      "notional": 17022.219342066357,
+      "risk": 69.86541231104422,
+      "fee_open": 8.511109671033179,
+      "opened_at": "2026-10-28T18:44:59Z",
+      "opened_ms": 1793213099999,
+      "source": "Signal-Bot",
+      "capped": false,
+      "exit": 81682.26375000001,
+      "reason": "TP",
+      "pnl": 87.72350006526821,
+      "r_multiple": 1.2556069901186429,
+      "closed_at": "2026-10-28T20:05:32Z",
+      "balance_after": 7074.26473116969
     }
   ],
   "created": "2026-10-23T08:40:40Z"
