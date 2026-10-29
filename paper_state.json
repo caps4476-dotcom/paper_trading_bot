@@ -1,9 +1,9 @@
 {
-  "balance": 6799.615069293108,
+  "balance": 6714.508383275397,
   "start_balance": 10000.0,
   "risk_percent": 1.0,
   "paused": false,
-  "telegram_offset": 644349171,
+  "telegram_offset": 644349172,
   "seen_channels": [
     "-1003990770236"
   ],
@@ -968,28 +968,6 @@
   ],
   "open": [
     {
-      "id": "f11b33",
-      "symbol": "BTCUSDT",
-      "timeframe": "5m",
-      "category": "Momentum",
-      "category_key": "MOMENTUM",
-      "rsi": 57.210073067372235,
-      "side": "BUY",
-      "signal_entry": 81329.72,
-      "entry": 81329.72,
-      "sl": 81129.93821428572,
-      "tp": 81629.39267857143,
-      "qty": 0.35409958449800943,
-      "notional": 28798.820059339447,
-      "risk": 70.7426473116969,
-      "fee_open": 14.399410029669726,
-      "opened_at": "2026-10-28T20:59:59Z",
-      "opened_ms": 1793221199999,
-      "checked_until_ms": 1793235300000,
-      "source": "Signal-Bot",
-      "capped": false
-    },
-    {
       "id": "003690",
       "symbol": "BTCUSDT",
       "timeframe": "5m",
@@ -1007,7 +985,7 @@
       "fee_open": 30.984675945660207,
       "opened_at": "2026-10-29T00:39:59Z",
       "opened_ms": 1793234399999,
-      "checked_until_ms": 1793235300000,
+      "checked_until_ms": 1793235600000,
       "source": "Signal-Bot",
       "capped": false
     }
@@ -2564,6 +2542,33 @@
       "r_multiple": -2.477342112108323,
       "closed_at": "2026-10-28T23:25:27Z",
       "balance_after": 6830.599745238768
+    },
+    {
+      "id": "f11b33",
+      "symbol": "BTCUSDT",
+      "timeframe": "5m",
+      "category": "Momentum",
+      "category_key": "MOMENTUM",
+      "rsi": 57.210073067372235,
+      "side": "BUY",
+      "signal_entry": 81329.72,
+      "entry": 81329.72,
+      "sl": 81129.93821428572,
+      "tp": 81629.39267857143,
+      "qty": 0.35409958449800943,
+      "notional": 28798.820059339447,
+      "risk": 70.7426473116969,
+      "fee_open": 14.399410029669726,
+      "opened_at": "2026-10-28T20:59:59Z",
+      "opened_ms": 1793221199999,
+      "source": "Signal-Bot",
+      "capped": false,
+      "exit": 81129.93821428572,
+      "reason": "SL",
+      "pnl": -99.5060960473805,
+      "r_multiple": -1.4065927672871767,
+      "closed_at": "2026-10-29T01:00:53Z",
+      "balance_after": 6714.508383275397
     }
   ],
   "created": "2026-10-23T08:40:40Z"
