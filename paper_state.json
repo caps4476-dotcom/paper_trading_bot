@@ -1,5 +1,5 @@
 {
-  "balance": 6401.038654427184,
+  "balance": 6485.075397789859,
   "start_balance": 10000.0,
   "risk_percent": 1.0,
   "paused": false,
@@ -978,30 +978,7 @@
     "BTCUSDT_15m_MOMENTUM_2026-10-30 08:29:59.999000+00:00",
     "BTCUSDT_5m_MOMENTUM_2026-10-30 11:39:59.999000+00:00"
   ],
-  "open": [
-    {
-      "id": "49a588",
-      "symbol": "BTCUSDT",
-      "timeframe": "5m",
-      "category": "Momentum",
-      "category_key": "MOMENTUM",
-      "rsi": 43.125403891238584,
-      "side": "SELL",
-      "signal_entry": 77578.14,
-      "entry": 77578.14,
-      "sl": 77781.87642857143,
-      "tp": 77272.53535714286,
-      "qty": 0.31478164148268334,
-      "notional": 24420.174252373414,
-      "risk": 64.1324874155337,
-      "fee_open": 12.210087126186707,
-      "opened_at": "2026-10-30T11:39:59Z",
-      "opened_ms": 1793360399999,
-      "checked_until_ms": 1793361300000,
-      "source": "Signal-Bot",
-      "capped": false
-    }
-  ],
+  "open": [],
   "closed": [
     {
       "id": "856cce",
@@ -2905,6 +2882,33 @@
       "r_multiple": 1.2893195093350471,
       "closed_at": "2026-10-30T10:10:30Z",
       "balance_after": 6413.248741553371
+    },
+    {
+      "id": "49a588",
+      "symbol": "BTCUSDT",
+      "timeframe": "5m",
+      "category": "Momentum",
+      "category_key": "MOMENTUM",
+      "rsi": 43.125403891238584,
+      "side": "SELL",
+      "signal_entry": 77578.14,
+      "entry": 77578.14,
+      "sl": 77781.87642857143,
+      "tp": 77272.53535714286,
+      "qty": 0.31478164148268334,
+      "notional": 24420.174252373414,
+      "risk": 64.1324874155337,
+      "fee_open": 12.210087126186707,
+      "opened_at": "2026-10-30T11:39:59Z",
+      "opened_ms": 1793360399999,
+      "source": "Signal-Bot",
+      "capped": false,
+      "exit": 77272.53535714286,
+      "reason": "TP",
+      "pnl": 71.82665623648879,
+      "r_multiple": 1.11997302975483,
+      "closed_at": "2026-10-30T12:00:53Z",
+      "balance_after": 6485.075397789859
     }
   ],
   "created": "2026-10-23T08:40:40Z"
