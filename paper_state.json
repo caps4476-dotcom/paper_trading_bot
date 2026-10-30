@@ -1,5 +1,5 @@
 {
-  "balance": 6251.075208389774,
+  "balance": 6331.614006906534,
   "start_balance": 10000.0,
   "risk_percent": 1.0,
   "paused": false,
@@ -976,30 +976,7 @@
     "PAXGUSDT_5m_RETEST_2026-10-30 05:34:59.999000+00:00",
     "PAXGUSDT_5m_RETEST_2026-10-30 05:39:59.999000+00:00"
   ],
-  "open": [
-    {
-      "id": "a21e65",
-      "symbol": "BTCUSDT",
-      "timeframe": "5m",
-      "category": "Re-Test",
-      "category_key": "RETEST",
-      "rsi": 69.52753749947108,
-      "side": "SELL",
-      "signal_entry": 78610.15,
-      "entry": 78610.15,
-      "sl": 78806.78607142856,
-      "tp": 78315.19589285714,
-      "qty": 0.3148549554869586,
-      "notional": 24750.795279073136,
-      "risk": 61.91184151677258,
-      "fee_open": 12.375397639536567,
-      "opened_at": "2026-10-30T05:24:59Z",
-      "opened_ms": 1793337899999,
-      "checked_until_ms": 1793345400000,
-      "source": "Signal-Bot",
-      "capped": false
-    }
-  ],
+  "open": [],
   "closed": [
     {
       "id": "856cce",
@@ -2849,6 +2826,33 @@
       "r_multiple": 0.5989090817882669,
       "closed_at": "2026-10-30T05:55:27Z",
       "balance_after": 6251.075208389774
+    },
+    {
+      "id": "a21e65",
+      "symbol": "BTCUSDT",
+      "timeframe": "5m",
+      "category": "Re-Test",
+      "category_key": "RETEST",
+      "rsi": 69.52753749947108,
+      "side": "SELL",
+      "signal_entry": 78610.15,
+      "entry": 78610.15,
+      "sl": 78806.78607142856,
+      "tp": 78315.19589285714,
+      "qty": 0.3148549554869586,
+      "notional": 24750.795279073136,
+      "risk": 61.91184151677258,
+      "fee_open": 12.375397639536567,
+      "opened_at": "2026-10-30T05:24:59Z",
+      "opened_ms": 1793337899999,
+      "source": "Signal-Bot",
+      "capped": false,
+      "exit": 78315.19589285714,
+      "reason": "TP",
+      "pnl": 68.16340087722332,
+      "r_multiple": 1.1009751803095233,
+      "closed_at": "2026-10-30T07:35:25Z",
+      "balance_after": 6331.614006906534
     }
   ],
   "created": "2026-10-23T08:40:40Z"
