@@ -1,5 +1,5 @@
 {
-  "balance": 6358.246063913019,
+  "balance": 6285.856655825002,
   "start_balance": 10000.0,
   "risk_percent": 1.0,
   "paused": false,
@@ -984,30 +984,7 @@
     "BTCUSDT_5m_RETEST_2026-10-30 23:29:59.999000+00:00",
     "BTCUSDT_15m_RETEST_2026-10-31 00:14:59.999000+00:00"
   ],
-  "open": [
-    {
-      "id": "68988f",
-      "symbol": "BTCUSDT",
-      "timeframe": "15m",
-      "category": "Re-Test",
-      "category_key": "RETEST",
-      "rsi": 60.4693898743238,
-      "side": "SELL",
-      "signal_entry": 77358.0,
-      "entry": 77358.0,
-      "sl": 77641.44857142857,
-      "tp": 76932.82714285715,
-      "qty": 0.2246239683726969,
-      "notional": 17376.46094537509,
-      "risk": 63.66934294385706,
-      "fee_open": 8.688230472687545,
-      "opened_at": "2026-10-31T00:14:59Z",
-      "opened_ms": 1793405699999,
-      "checked_until_ms": 1793408400000,
-      "source": "Signal-Bot",
-      "capped": false
-    }
-  ],
+  "open": [],
   "closed": [
     {
       "id": "856cce",
@@ -3073,6 +3050,33 @@
       "r_multiple": -1.6413655018623208,
       "closed_at": "2026-10-30T23:35:28Z",
       "balance_after": 6366.934294385706
+    },
+    {
+      "id": "68988f",
+      "symbol": "BTCUSDT",
+      "timeframe": "15m",
+      "category": "Re-Test",
+      "category_key": "RETEST",
+      "rsi": 60.4693898743238,
+      "side": "SELL",
+      "signal_entry": 77358.0,
+      "entry": 77358.0,
+      "sl": 77641.44857142857,
+      "tp": 76932.82714285715,
+      "qty": 0.2246239683726969,
+      "notional": 17376.46094537509,
+      "risk": 63.66934294385706,
+      "fee_open": 8.688230472687545,
+      "opened_at": "2026-10-31T00:14:59Z",
+      "opened_ms": 1793405699999,
+      "source": "Signal-Bot",
+      "capped": false,
+      "exit": 77641.44857142857,
+      "reason": "SL",
+      "pnl": -81.07763856070409,
+      "r_multiple": -1.2734172336629495,
+      "closed_at": "2026-10-31T01:05:25Z",
+      "balance_after": 6285.856655825002
     }
   ],
   "created": "2026-10-23T08:40:40Z"
