@@ -1,5 +1,5 @@
 {
-  "balance": 6255.341197098083,
+  "balance": 6180.87496693121,
   "start_balance": 10000.0,
   "risk_percent": 1.0,
   "paused": false,
@@ -987,30 +987,7 @@
     "EURUSDT_5m_RETEST_2026-10-31 03:44:59.999000+00:00",
     "BTCUSDT_15m_MOMENTUM_2026-10-31 04:44:59.999000+00:00"
   ],
-  "open": [
-    {
-      "id": "c54392",
-      "symbol": "BTCUSDT",
-      "timeframe": "15m",
-      "category": "Momentum",
-      "category_key": "MOMENTUM",
-      "rsi": 44.83585534913487,
-      "side": "SELL",
-      "signal_entry": 77163.99,
-      "entry": 77163.99,
-      "sl": 77369.53285714287,
-      "tp": 76855.67571428571,
-      "qty": 0.30490502703144273,
-      "notional": 23527.68845680398,
-      "risk": 62.67105041326486,
-      "fee_open": 11.76384422840199,
-      "opened_at": "2026-10-31T04:44:59Z",
-      "opened_ms": 1793421899999,
-      "checked_until_ms": 1793426400000,
-      "source": "Signal-Bot",
-      "capped": false
-    }
-  ],
+  "open": [],
   "closed": [
     {
       "id": "856cce",
@@ -3157,6 +3134,33 @@
       "r_multiple": 1.1872980661355916,
       "closed_at": "2026-10-31T03:55:28Z",
       "balance_after": 6267.105041326486
+    },
+    {
+      "id": "c54392",
+      "symbol": "BTCUSDT",
+      "timeframe": "15m",
+      "category": "Momentum",
+      "category_key": "MOMENTUM",
+      "rsi": 44.83585534913487,
+      "side": "SELL",
+      "signal_entry": 77163.99,
+      "entry": 77163.99,
+      "sl": 77369.53285714287,
+      "tp": 76855.67571428571,
+      "qty": 0.30490502703144273,
+      "notional": 23527.68845680398,
+      "risk": 62.67105041326486,
+      "fee_open": 11.76384422840199,
+      "opened_at": "2026-10-31T04:44:59Z",
+      "opened_ms": 1793421899999,
+      "source": "Signal-Bot",
+      "capped": false,
+      "exit": 77369.53285714287,
+      "reason": "SL",
+      "pnl": -86.23007439527547,
+      "r_multiple": -1.3759155754795542,
+      "closed_at": "2026-10-31T06:05:29Z",
+      "balance_after": 6180.87496693121
     }
   ],
   "created": "2026-10-23T08:40:40Z"
