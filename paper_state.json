@@ -1,9 +1,9 @@
 {
-  "balance": 6182.621617188006,
+  "balance": 6267.105041326486,
   "start_balance": 10000.0,
   "risk_percent": 1.0,
   "paused": false,
-  "telegram_offset": 644349211,
+  "telegram_offset": 644349212,
   "seen_channels": [
     "-1003990770236"
   ],
@@ -986,30 +986,7 @@
     "BTCUSDT_15m_RETEST_2026-10-31 01:14:59.999000+00:00",
     "EURUSDT_5m_RETEST_2026-10-31 03:44:59.999000+00:00"
   ],
-  "open": [
-    {
-      "id": "bbf456",
-      "symbol": "BTCUSDT",
-      "timeframe": "15m",
-      "category": "Re-Test",
-      "category_key": "RETEST",
-      "rsi": 64.12073334978193,
-      "side": "SELL",
-      "signal_entry": 77532.0,
-      "entry": 77532.0,
-      "sl": 77779.34892857142,
-      "tp": 77160.97660714287,
-      "qty": 0.2541291240730034,
-      "notional": 19703.1392476281,
-      "risk": 62.85856655825003,
-      "fee_open": 9.85156962381405,
-      "opened_at": "2026-10-31T01:14:59Z",
-      "opened_ms": 1793409299999,
-      "checked_until_ms": 1793418600000,
-      "source": "Signal-Bot",
-      "capped": false
-    }
-  ],
+  "open": [],
   "closed": [
     {
       "id": "856cce",
@@ -3129,6 +3106,33 @@
       "r_multiple": -1.4879444444444538,
       "closed_at": "2026-10-31T03:50:34Z",
       "balance_after": 6182.621617188006
+    },
+    {
+      "id": "bbf456",
+      "symbol": "BTCUSDT",
+      "timeframe": "15m",
+      "category": "Re-Test",
+      "category_key": "RETEST",
+      "rsi": 64.12073334978193,
+      "side": "SELL",
+      "signal_entry": 77532.0,
+      "entry": 77532.0,
+      "sl": 77779.34892857142,
+      "tp": 77160.97660714287,
+      "qty": 0.2541291240730034,
+      "notional": 19703.1392476281,
+      "risk": 62.85856655825003,
+      "fee_open": 9.85156962381405,
+      "opened_at": "2026-10-31T01:14:59Z",
+      "opened_ms": 1793409299999,
+      "source": "Signal-Bot",
+      "capped": false,
+      "exit": 77160.97660714287,
+      "reason": "TP",
+      "pnl": 74.63185451466563,
+      "r_multiple": 1.1872980661355916,
+      "closed_at": "2026-10-31T03:55:28Z",
+      "balance_after": 6267.105041326486
     }
   ],
   "created": "2026-10-23T08:40:40Z"
