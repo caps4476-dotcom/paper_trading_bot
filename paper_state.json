@@ -1,9 +1,9 @@
 {
-  "balance": 5977.1198899766505,
+  "balance": 5963.032565535961,
   "start_balance": 10000.0,
   "risk_percent": 1.0,
   "paused": false,
-  "telegram_offset": 644349233,
+  "telegram_offset": 644349234,
   "seen_channels": [
     "-1003990770236"
   ],
@@ -994,9 +994,33 @@
     "BTCUSDT_15m_RETEST_2026-10-31 12:44:59.999000+00:00",
     "BTCUSDT_5m_RETEST_2026-10-31 15:09:59.999000+00:00",
     "BTCUSDT_5m_MOMENTUM_2026-10-31 15:39:59.999000+00:00",
-    "BTCUSDT_15m_RETEST_2026-10-31 16:29:59.999000+00:00"
+    "BTCUSDT_15m_RETEST_2026-10-31 16:29:59.999000+00:00",
+    "EURUSDT_5m_RETEST_2026-10-31 20:29:59.999000+00:00"
   ],
-  "open": [],
+  "open": [
+    {
+      "id": "7891eb",
+      "symbol": "EURUSDT",
+      "timeframe": "5m",
+      "category": "Re-Test",
+      "category_key": "RETEST",
+      "rsi": 61.37937766738473,
+      "side": "SELL",
+      "signal_entry": 1.1313,
+      "entry": 1.1313,
+      "sl": 1.1337,
+      "tp": 1.1277,
+      "qty": 24904.666208236482,
+      "notional": 28174.648881377932,
+      "risk": 59.7711988997665,
+      "fee_open": 14.087324440688967,
+      "opened_at": "2026-10-31T20:29:59Z",
+      "opened_ms": 1793478599999,
+      "checked_until_ms": 1793478900000,
+      "source": "Signal-Bot",
+      "capped": false
+    }
+  ],
   "closed": [
     {
       "id": "856cce",
