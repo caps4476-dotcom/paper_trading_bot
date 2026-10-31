@@ -1,9 +1,9 @@
 {
-  "balance": 6157.673761433273,
+  "balance": 6227.139323877052,
   "start_balance": 10000.0,
   "risk_percent": 1.0,
   "paused": false,
-  "telegram_offset": 644349217,
+  "telegram_offset": 644349219,
   "seen_channels": [
     "-1003990770236"
   ],
@@ -989,30 +989,7 @@
     "EURUSDT_5m_RETEST_2026-10-31 06:24:59.999000+00:00",
     "EURUSDT_5m_RETEST_2026-10-31 06:29:59.999000+00:00"
   ],
-  "open": [
-    {
-      "id": "2941c6",
-      "symbol": "EURUSDT",
-      "timeframe": "5m",
-      "category": "Re-Test",
-      "category_key": "RETEST",
-      "rsi": 38.36751047914171,
-      "side": "BUY",
-      "signal_entry": 1.1422,
-      "entry": 1.1422,
-      "sl": 1.1406785714285717,
-      "tp": 1.1444821428571428,
-      "qty": 40625.469266217726,
-      "notional": 46402.41099587389,
-      "risk": 61.80874966931209,
-      "fee_open": 23.20120549793695,
-      "opened_at": "2026-10-31T06:24:59Z",
-      "opened_ms": 1793427899999,
-      "checked_until_ms": 1793433600000,
-      "source": "Signal-Bot",
-      "capped": false
-    }
-  ],
+  "open": [],
   "closed": [
     {
       "id": "856cce",
@@ -3186,6 +3163,33 @@
       "r_multiple": -1.3759155754795542,
       "closed_at": "2026-10-31T06:05:29Z",
       "balance_after": 6180.87496693121
+    },
+    {
+      "id": "2941c6",
+      "symbol": "EURUSDT",
+      "timeframe": "5m",
+      "category": "Re-Test",
+      "category_key": "RETEST",
+      "rsi": 38.36751047914171,
+      "side": "BUY",
+      "signal_entry": 1.1422,
+      "entry": 1.1422,
+      "sl": 1.1406785714285717,
+      "tp": 1.1444821428571428,
+      "qty": 40625.469266217726,
+      "notional": 46402.41099587389,
+      "risk": 61.80874966931209,
+      "fee_open": 23.20120549793695,
+      "opened_at": "2026-10-31T06:24:59Z",
+      "opened_ms": 1793427899999,
+      "source": "Signal-Bot",
+      "capped": false,
+      "exit": 1.1444821428571428,
+      "reason": "TP",
+      "pnl": 46.264356945842266,
+      "r_multiple": 0.748508215962382,
+      "closed_at": "2026-10-31T08:05:26Z",
+      "balance_after": 6227.139323877052
     }
   ],
   "created": "2026-10-23T08:40:40Z"
