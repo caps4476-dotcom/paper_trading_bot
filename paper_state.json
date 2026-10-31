@@ -3,7 +3,7 @@
   "start_balance": 10000.0,
   "risk_percent": 1.0,
   "paused": false,
-  "telegram_offset": 644349216,
+  "telegram_offset": 644349217,
   "seen_channels": [
     "-1003990770236"
   ],
@@ -986,7 +986,8 @@
     "BTCUSDT_15m_RETEST_2026-10-31 01:14:59.999000+00:00",
     "EURUSDT_5m_RETEST_2026-10-31 03:44:59.999000+00:00",
     "BTCUSDT_15m_MOMENTUM_2026-10-31 04:44:59.999000+00:00",
-    "EURUSDT_5m_RETEST_2026-10-31 06:24:59.999000+00:00"
+    "EURUSDT_5m_RETEST_2026-10-31 06:24:59.999000+00:00",
+    "EURUSDT_5m_RETEST_2026-10-31 06:29:59.999000+00:00"
   ],
   "open": [
     {
@@ -1007,7 +1008,7 @@
       "fee_open": 23.20120549793695,
       "opened_at": "2026-10-31T06:24:59Z",
       "opened_ms": 1793427899999,
-      "checked_until_ms": 1793428200000,
+      "checked_until_ms": 1793428500000,
       "source": "Signal-Bot",
       "capped": false
     }
