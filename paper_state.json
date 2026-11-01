@@ -1022,7 +1022,7 @@
       "fee_open": 28.24011662381201,
       "opened_at": "2026-11-01T16:24:59Z",
       "opened_ms": 1793550299999,
-      "checked_until_ms": 1793552700000,
+      "checked_until_ms": 1793553000000,
       "source": "Signal-Bot",
       "capped": true
     }
