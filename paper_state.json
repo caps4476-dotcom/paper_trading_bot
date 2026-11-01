@@ -1,9 +1,9 @@
 {
-  "balance": 5764.459389454184,
+  "balance": 5655.948241764693,
   "start_balance": 10000.0,
   "risk_percent": 1.0,
   "paused": false,
-  "telegram_offset": 644349238,
+  "telegram_offset": 644349239,
   "seen_channels": [
     "-1003990770236"
   ],
@@ -997,30 +997,31 @@
     "BTCUSDT_15m_RETEST_2026-10-31 16:29:59.999000+00:00",
     "EURUSDT_5m_RETEST_2026-10-31 20:29:59.999000+00:00",
     "BTCUSDT_5m_MOMENTUM_2026-10-31 21:59:59.999000+00:00",
-    "BTCUSDT_15m_MOMENTUM_2026-10-31 23:14:59.999000+00:00"
+    "BTCUSDT_15m_MOMENTUM_2026-10-31 23:14:59.999000+00:00",
+    "BTCUSDT_5m_MOMENTUM_2026-11-01 00:29:59.999000+00:00"
   ],
   "open": [
     {
-      "id": "a73551",
+      "id": "ca37e1",
       "symbol": "BTCUSDT",
-      "timeframe": "15m",
+      "timeframe": "5m",
       "category": "Momentum",
       "category_key": "MOMENTUM",
-      "rsi": 44.76430634216802,
-      "side": "SELL",
-      "signal_entry": 77541.25,
-      "entry": 77541.25,
-      "sl": 77644.16928571428,
-      "tp": 77386.87107142858,
-      "qty": 0.5622130683613017,
-      "notional": 43594.704087070786,
-      "risk": 57.86256741497719,
-      "fee_open": 21.797352043535394,
-      "opened_at": "2026-10-31T23:14:59Z",
-      "opened_ms": 1793488499999,
-      "checked_until_ms": 1793493000000,
+      "rsi": 58.03452063860753,
+      "side": "BUY",
+      "signal_entry": 77621.71,
+      "entry": 77621.71,
+      "sl": 77575.18428571429,
+      "tp": 77691.49857142859,
+      "qty": 0.7426349393042466,
+      "notional": 57644.59389454184,
+      "risk": 34.55162100465895,
+      "fee_open": 28.82229694727092,
+      "opened_at": "2026-11-01T00:29:59Z",
+      "opened_ms": 1793492999999,
+      "checked_until_ms": 1793493300000,
       "source": "Signal-Bot",
-      "capped": false
+      "capped": true
     }
   ],
   "closed": [
@@ -3466,6 +3467,33 @@
       "r_multiple": -2.3373950644622474,
       "closed_at": "2026-10-31T22:20:40Z",
       "balance_after": 5786.256741497719
+    },
+    {
+      "id": "a73551",
+      "symbol": "BTCUSDT",
+      "timeframe": "15m",
+      "category": "Momentum",
+      "category_key": "MOMENTUM",
+      "rsi": 44.76430634216802,
+      "side": "SELL",
+      "signal_entry": 77541.25,
+      "entry": 77541.25,
+      "sl": 77644.16928571428,
+      "tp": 77386.87107142858,
+      "qty": 0.5622130683613017,
+      "notional": 43594.704087070786,
+      "risk": 57.86256741497719,
+      "fee_open": 21.797352043535394,
+      "opened_at": "2026-10-31T23:14:59Z",
+      "opened_ms": 1793488499999,
+      "source": "Signal-Bot",
+      "capped": false,
+      "exit": 77644.16928571428,
+      "reason": "SL",
+      "pnl": -101.48620278575547,
+      "r_multiple": -1.7539180738026965,
+      "closed_at": "2026-11-01T00:35:28Z",
+      "balance_after": 5655.948241764693
     }
   ],
   "created": "2026-10-23T08:40:40Z"
