@@ -3,7 +3,7 @@
   "start_balance": 10000.0,
   "risk_percent": 1.0,
   "paused": false,
-  "telegram_offset": 644349239,
+  "telegram_offset": 644349240,
   "seen_channels": [
     "-1003990770236"
   ],
@@ -1019,7 +1019,7 @@
       "fee_open": 28.82229694727092,
       "opened_at": "2026-11-01T00:29:59Z",
       "opened_ms": 1793492999999,
-      "checked_until_ms": 1793493300000,
+      "checked_until_ms": 1793493600000,
       "source": "Signal-Bot",
       "capped": true
     }
