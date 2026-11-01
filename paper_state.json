@@ -1,9 +1,9 @@
 {
-  "balance": 5612.817949183181,
+  "balance": 5648.023324762402,
   "start_balance": 10000.0,
   "risk_percent": 1.0,
   "paused": false,
-  "telegram_offset": 644349244,
+  "telegram_offset": 644349245,
   "seen_channels": [
     "-1003990770236"
   ],
@@ -1002,30 +1002,7 @@
     "BTCUSDT_5m_MOMENTUM_2026-11-01 07:54:59.999000+00:00",
     "PAXGUSDT_15m_RETEST_2026-11-01 08:14:59.999000+00:00"
   ],
-  "open": [
-    {
-      "id": "b8ca03",
-      "symbol": "BTCUSDT",
-      "timeframe": "5m",
-      "category": "Momentum",
-      "category_key": "MOMENTUM",
-      "rsi": 56.54230863053363,
-      "side": "BUY",
-      "signal_entry": 77974.0,
-      "entry": 77974.0,
-      "sl": 77915.75392857143,
-      "tp": 78061.36910714285,
-      "qty": 0.7283103935425479,
-      "notional": 56789.274626086626,
-      "risk": 42.42121920444906,
-      "fee_open": 28.39463731304331,
-      "opened_at": "2026-11-01T07:54:59Z",
-      "opened_ms": 1793519699999,
-      "checked_until_ms": 1793521800000,
-      "source": "Signal-Bot",
-      "capped": true
-    }
-  ],
+  "open": [],
   "closed": [
     {
       "id": "856cce",
@@ -3550,6 +3527,33 @@
       "r_multiple": -3.012200020652786,
       "closed_at": "2026-11-01T08:25:29Z",
       "balance_after": 5612.817949183181
+    },
+    {
+      "id": "b8ca03",
+      "symbol": "BTCUSDT",
+      "timeframe": "5m",
+      "category": "Momentum",
+      "category_key": "MOMENTUM",
+      "rsi": 56.54230863053363,
+      "side": "BUY",
+      "signal_entry": 77974.0,
+      "entry": 77974.0,
+      "sl": 77915.75392857143,
+      "tp": 78061.36910714285,
+      "qty": 0.7283103935425479,
+      "notional": 56789.274626086626,
+      "risk": 42.42121920444906,
+      "fee_open": 28.39463731304331,
+      "opened_at": "2026-11-01T07:54:59Z",
+      "opened_ms": 1793519699999,
+      "source": "Signal-Bot",
+      "capped": true,
+      "exit": 78061.36910714285,
+      "reason": "TP",
+      "pnl": 6.810738266178333,
+      "r_multiple": 0.1605502716306663,
+      "closed_at": "2026-11-01T08:35:25Z",
+      "balance_after": 5648.023324762402
     }
   ],
   "created": "2026-10-23T08:40:40Z"
