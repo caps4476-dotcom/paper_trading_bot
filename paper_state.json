@@ -1018,7 +1018,7 @@
       "fee_open": 21.797352043535394,
       "opened_at": "2026-10-31T23:14:59Z",
       "opened_ms": 1793488499999,
-      "checked_until_ms": 1793491500000,
+      "checked_until_ms": 1793491800000,
       "source": "Signal-Bot",
       "capped": false
     }
