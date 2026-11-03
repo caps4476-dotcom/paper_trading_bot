@@ -1,5 +1,5 @@
 {
-  "balance": 5535.794492071172,
+  "balance": 5472.51567042033,
   "start_balance": 10000.0,
   "risk_percent": 1.0,
   "paused": false,
@@ -1004,30 +1004,7 @@
     "BTCUSDT_5m_MOMENTUM_2026-11-01 16:24:59.999000+00:00",
     "BTCUSDT_15m_MOMENTUM_2026-11-03 02:59:59.999000+00:00"
   ],
-  "open": [
-    {
-      "id": "cde4ee",
-      "symbol": "BTCUSDT",
-      "timeframe": "15m",
-      "category": "Momentum",
-      "category_key": "MOMENTUM",
-      "rsi": 37.08178578028697,
-      "side": "SELL",
-      "signal_entry": 76705.58,
-      "entry": 76705.58,
-      "sl": 76977.63714285714,
-      "tp": 76297.49428571429,
-      "qty": 0.2037663647588476,
-      "notional": 15630.017193318965,
-      "risk": 55.436095006678315,
-      "fee_open": 7.815008596659482,
-      "opened_at": "2026-11-03T02:59:59Z",
-      "opened_ms": 1793674799999,
-      "checked_until_ms": 1793675700000,
-      "source": "Signal-Bot",
-      "capped": false
-    }
-  ],
+  "open": [],
   "closed": [
     {
       "id": "856cce",
@@ -3606,6 +3583,33 @@
       "r_multiple": -2.1772125838799257,
       "closed_at": "2026-11-01T18:00:50Z",
       "balance_after": 5543.6095006678315
+    },
+    {
+      "id": "cde4ee",
+      "symbol": "BTCUSDT",
+      "timeframe": "15m",
+      "category": "Momentum",
+      "category_key": "MOMENTUM",
+      "rsi": 37.08178578028697,
+      "side": "SELL",
+      "signal_entry": 76705.58,
+      "entry": 76705.58,
+      "sl": 76977.63714285714,
+      "tp": 76297.49428571429,
+      "qty": 0.2037663647588476,
+      "notional": 15630.017193318965,
+      "risk": 55.436095006678315,
+      "fee_open": 7.815008596659482,
+      "opened_at": "2026-11-03T02:59:59Z",
+      "opened_ms": 1793674799999,
+      "source": "Signal-Bot",
+      "capped": false,
+      "exit": 76977.63714285714,
+      "reason": "SL",
+      "pnl": -71.09383024750062,
+      "r_multiple": -1.2824465763495072,
+      "closed_at": "2026-11-03T03:20:35Z",
+      "balance_after": 5472.51567042033
     }
   ],
   "created": "2026-10-23T08:40:40Z"
